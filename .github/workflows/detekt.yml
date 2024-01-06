@@ -1,0 +1,13 @@
+name: Lint project
+
+on:
+  push:
+
+jobs:
+  Build-Project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.11.1
+      - name: Run detekt
+        run: ./gradlew :sample:detekt
