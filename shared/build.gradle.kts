@@ -28,7 +28,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
@@ -55,4 +55,13 @@ android {
     }
 }
 
-detekt {}
+detekt {
+
+    source.setFrom(
+        "src/commonMain/kotlin",
+        "src/androidMain/kotlin",
+        "src/iosMain/kotlin"
+    )
+
+    config.setFrom(files("$rootDir/configuration/detekt/config.yml"))
+}
