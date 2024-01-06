@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.detekt)
 }
 
 kotlin {
@@ -53,3 +54,5 @@ android {
         minSdk = 26
     }
 }
+
+detekt {}
