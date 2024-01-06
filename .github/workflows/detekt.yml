@@ -17,4 +17,4 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.11.1
       - name: Run detekt
-        run: ./gradlew :sample:detekt
+        run: ./gradlew :shared:detekt
