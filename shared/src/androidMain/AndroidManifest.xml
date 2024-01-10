@@ -10,7 +10,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="io.github.alaksion.unsplashwrapper.sdk"
+                android:name="io.github.alaksion.unsplashwrapper.sdk.UnsplashWrapperInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>
