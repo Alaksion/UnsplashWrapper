@@ -4,6 +4,7 @@ kotlin = "1.9.20"
 ktor = "2.3.7"
 coroutines = "1.7.3"
 detekt = "1.23.3"
+androidxStartup = "1.1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -20,6 +21,9 @@ ktx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0
 #Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+#Androidx
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidxStartup" }
 
 
 [plugins]
