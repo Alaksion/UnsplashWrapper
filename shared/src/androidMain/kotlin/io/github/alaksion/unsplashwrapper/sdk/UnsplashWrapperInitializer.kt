@@ -14,7 +14,7 @@ class UnsplashWrapperInitializer : Initializer<UnsplashWrapperContext> {
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {
-        TODO("Not yet implemented")
+        return mutableListOf()
     }
 
 }
