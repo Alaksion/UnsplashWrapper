@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  Build-Project:
+  Lint-Project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
