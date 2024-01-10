@@ -32,8 +32,8 @@ internal class AuthenticationManager(
     override fun getUserToken(): String? = localStorage.getString(USER_TOKEN)
 
     internal companion object {
-        val PUBLIC_KEY = "unsplash_public_key"
-        val USER_TOKEN = "unsplash_user_token"
+        const val PUBLIC_KEY = "unsplash_public_key"
+        const val USER_TOKEN = "unsplash_user_token"
     }
 
 }
