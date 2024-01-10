@@ -23,7 +23,6 @@ internal class AuthenticationManager(
 
     override fun getPublicKey(): String? = localStorage.getString(PUBLIC_KEY)
 
-
     override fun storeUserToken(token: String) =
         localStorage.putString(
             value = token,

@@ -12,11 +12,4 @@ class UnsplashWrapperSdk private constructor(
     override fun initialize(apiKey: String) {
         authManager.storePublicKey(apiKey)
     }
-
-    companion object {
-        val instance = UnsplashWrapperSdk(
-            
-        )
-    }
-
 }
