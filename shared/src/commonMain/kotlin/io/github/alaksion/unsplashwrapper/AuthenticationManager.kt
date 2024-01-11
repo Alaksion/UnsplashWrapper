@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper
 
-import io.github.alaksion.unsplashwrapper.localstorage.LocalStorage
+import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 
 internal interface AuthManager {
     fun storePublicKey(key: String)

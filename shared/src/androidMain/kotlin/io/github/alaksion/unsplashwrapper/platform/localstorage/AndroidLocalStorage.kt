@@ -1,6 +1,7 @@
-package io.github.alaksion.unsplashwrapper.localstorage
+package io.github.alaksion.unsplashwrapper.platform.localstorage
 
 import android.content.Context
+import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 
 actual class LocalStorageImpl(
     private val context: Context
