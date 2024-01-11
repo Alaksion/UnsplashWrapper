@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.platform.localstorage
 
 import android.content.Context
-import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
+import io.github.alaksion.unsplashwrapper.sdk.appContext
 
 actual class LocalStorageImpl(
     private val context: Context
@@ -19,5 +19,9 @@ actual class LocalStorageImpl(
 
     override fun getString(key: String): String? {
         return preferences.getString(key, null)
+    }
+
+    actual companion object Provider {
+        actual val Instace: LocalStorage = LocalStorageImpl(context = appContext)
     }
 }
