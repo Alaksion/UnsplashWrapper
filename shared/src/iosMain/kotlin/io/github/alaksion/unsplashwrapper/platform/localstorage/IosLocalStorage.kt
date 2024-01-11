@@ -1,5 +1,6 @@
-package io.github.alaksion.unsplashwrapper.localstorage
+package io.github.alaksion.unsplashwrapper.platform.localstorage
 
+import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.setValue
 

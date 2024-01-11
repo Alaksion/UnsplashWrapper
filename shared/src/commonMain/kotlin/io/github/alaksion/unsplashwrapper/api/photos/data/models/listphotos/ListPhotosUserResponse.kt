@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.photos.data.models.listphotos
+package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

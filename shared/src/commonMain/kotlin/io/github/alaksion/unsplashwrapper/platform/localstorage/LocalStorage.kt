@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.localstorage
+package io.github.alaksion.unsplashwrapper.platform.localstorage
 
 internal interface LocalStorage {
     fun putString(value: String, key: String)
