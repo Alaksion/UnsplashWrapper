@@ -1,6 +1,5 @@
 package io.github.alaksion.unsplashwrapper.platform.localstorage
 
-import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.setValue
 
@@ -16,5 +15,9 @@ actual class LocalStorageImpl : LocalStorage {
 
     override fun getString(key: String): String? {
         return userDefaults.stringForKey(key)
+    }
+
+    actual companion object Provider {
+        actual val Instace: LocalStorage = LocalStorageImpl()
     }
 }
