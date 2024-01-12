@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.sdk
 
-import io.github.alaksion.unsplashwrapper.AuthManager
-import io.github.alaksion.unsplashwrapper.AuthenticationManager
+import io.github.alaksion.unsplashwrapper.platform.AuthManager
+import io.github.alaksion.unsplashwrapper.platform.AuthenticationManager
 
 interface UnsplashSdk {
     fun initialize(apiKey: String)

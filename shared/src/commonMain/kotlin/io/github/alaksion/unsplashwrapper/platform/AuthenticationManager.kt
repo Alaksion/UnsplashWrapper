@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper
+package io.github.alaksion.unsplashwrapper.platform
 
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorageImpl

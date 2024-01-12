@@ -32,6 +32,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.negotiation)
             implementation(libs.ktx.serialization)
             implementation(libs.ktx.datetime)
             implementation(libs.kotlinx.coroutines.core)
