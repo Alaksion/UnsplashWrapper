@@ -36,7 +36,7 @@ internal class AuthenticationManager private constructor(
         const val PUBLIC_KEY = "unsplash_public_key"
         const val USER_TOKEN = "unsplash_user_token"
 
-        val Instance: AuthenticationManager = AuthenticationManager(
+        val Instance: AuthManager = AuthenticationManager(
             localStorage = LocalStorageImpl.Instace
         )
     }
