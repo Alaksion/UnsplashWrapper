@@ -9,6 +9,6 @@ interface UnsplashPhotosRepository {
         page: Int = 1,
         resultsPerPage: Int = 10,
         orderBy: PhotoOrderBy = PhotoOrderBy.Latest
-    ): ListPhotos
+    ): List<ListPhotos>
 
 }

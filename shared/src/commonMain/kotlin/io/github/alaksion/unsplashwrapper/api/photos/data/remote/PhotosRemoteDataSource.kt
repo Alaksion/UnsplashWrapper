@@ -17,7 +17,7 @@ internal interface PhotosRemoteDataSource {
         page: Int = 1,
         resultsPerPage: Int = 10,
         orderBy: PhotosOrderByRequest,
-    ): ListPhotosResponse
+    ): List<ListPhotosResponse>
 }
 
 internal class PhotosRemoteDataSourceImpl private constructor(
@@ -29,7 +29,7 @@ internal class PhotosRemoteDataSourceImpl private constructor(
         page: Int,
         resultsPerPage: Int,
         orderBy: PhotosOrderByRequest,
-    ): ListPhotosResponse {
+    ): List<ListPhotosResponse> {
         return withContext(dispatcher) {
             httpClient.client
                 .get(
@@ -39,7 +39,7 @@ internal class PhotosRemoteDataSourceImpl private constructor(
                     parameter("per_page", resultsPerPage)
                     parameter("order_by", orderBy.value)
                 }
-                .body<ListPhotosResponse>()
+                .body<List<ListPhotosResponse>>()
         }
     }
 

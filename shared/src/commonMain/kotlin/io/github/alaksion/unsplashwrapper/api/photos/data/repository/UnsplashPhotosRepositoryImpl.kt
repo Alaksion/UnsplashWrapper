@@ -16,13 +16,12 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
         page: Int,
         resultsPerPage: Int,
         orderBy: PhotoOrderBy
-    ): ListPhotos = ListPhotosMapper.map(
+    ): List<ListPhotos> =
         photosRemoteDataSource.listPhotos(
             page = page,
             resultsPerPage = resultsPerPage,
             orderBy = orderBy.toData()
-        )
-    )
+        ).map { ListPhotosMapper.map(it) }
 
     companion object {
         val Instace = UnsplashPhotosRepositoryImpl(
