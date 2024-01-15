@@ -79,7 +79,6 @@ detekt {
 
 publishing {
     publications {
-
         create<MavenPublication>("mavenPub") {
             pom {
                 name = "unsplash-wrapper"
@@ -103,6 +102,9 @@ publishing {
                 }
             }
         }
+    }
 
+    repositories {
+        mavenCentral()
     }
 }
