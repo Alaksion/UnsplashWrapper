@@ -77,11 +77,12 @@ detekt {
     config.setFrom(files("$rootDir/configuration/detekt/config.yml"))
 }
 
-group = "io.github.alaksion"
-version = "0.0.1"
-
 publishing {
     repositories {
-        mavenCentral()
+        mavenCentral {
+            group = "io.github.alaksion"
+            name = "unsplash-wrapper"
+            version = "0.0.1"
+        }
     }
 }
