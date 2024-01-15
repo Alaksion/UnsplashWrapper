@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.detekt)
+    id("maven-publish")
 }
 
 kotlin {
@@ -51,6 +52,10 @@ kotlin {
             implementation(libs.ktor.client.darwin)
         }
     }
+
+    androidTarget {
+        publishLibraryVariants = listOf("debug", "release")
+    }
 }
 
 android {
@@ -70,4 +75,13 @@ detekt {
     )
 
     config.setFrom(files("$rootDir/configuration/detekt/config.yml"))
+}
+
+group = "io.github.alaksion"
+version = "0.0.1"
+
+publishing {
+    repositories {
+        mavenCentral()
+    }
 }
