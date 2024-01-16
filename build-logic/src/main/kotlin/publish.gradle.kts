@@ -3,6 +3,10 @@ plugins {
     signing
 }
 
+val javadocJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("javadoc")
+}
+
 configure<PublishingExtension> {
 
     repositories {
@@ -11,6 +15,7 @@ configure<PublishingExtension> {
 
     publications {
         create<MavenPublication>("mavenPub") {
+            artifact(javadocJar.get())
             pom {
                 name = "unsplash-wrapper"
                 description =

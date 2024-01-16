@@ -51,6 +51,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.androidx.startup)
+            implementation("io.github.alaksion:shared-android:0.0.1")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
