@@ -15,8 +15,8 @@ configure<PublishingExtension> {
                 name = "unsplash-wrapper"
                 description =
                     "Wrapper SDK of the Unsplash public API. https://unsplash.com/documentation#creating-a-developer-account"
-                version = "0.0.1"
-                group = "io.github.alaksion"
+                version = BuildSettings.VERSION
+                group = BuildSettings.GROUP
                 artifactId = "unsplash-wrapper"
                 licenses {
                     licenses {

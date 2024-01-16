@@ -7,6 +7,9 @@ plugins {
     id("publish")
 }
 
+group = BuildSettings.GROUP
+version = BuildSettings.VERSION
+
 kotlin {
     androidTarget {
         compilations.all {
