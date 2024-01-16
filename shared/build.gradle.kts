@@ -16,7 +16,7 @@ kotlin {
                 jvmTarget = "1.8"
             }
         }
-        publishLibraryVariants = listOf("debug", "release")
+        publishAllLibraryVariants()
     }
     iosX64()
     iosArm64()
@@ -50,7 +50,6 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.androidx.startup)
-//            implementation("io.github.alaksion:shared-android:0.0.1")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
