@@ -34,8 +34,3 @@ configure<PublishingExtension> {
         mavenCentral()
     }
 }
-
-configure<SigningExtension> {
-    val publishExtension = project.extensions.getByType<PublishingExtension>()
-    sign(publishExtension.publications)
-}

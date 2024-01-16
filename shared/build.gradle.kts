@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.detekt)
-    id("maven-publish")
+    id("publish")
 }
 
 kotlin {
