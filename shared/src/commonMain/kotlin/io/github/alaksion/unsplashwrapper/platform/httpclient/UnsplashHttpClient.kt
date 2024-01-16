@@ -29,7 +29,7 @@ internal class UnsplashHttpClient private constructor(
             authManager.getUserToken()?.let { userToken ->
                 bearerAuth(userToken)
 
-            } ?: header("Authorization", "Client-id ${authManager.getPublicKey()}")
+            } ?: header("Authorization", "Client-ID ${authManager.getPublicKey()}")
 
             header("Version", UnsplashSdkConfig.version)
         }
