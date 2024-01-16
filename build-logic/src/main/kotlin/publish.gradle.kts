@@ -4,6 +4,11 @@ plugins {
 }
 
 configure<PublishingExtension> {
+
+    repositories {
+        mavenCentral()
+    }
+
     publications {
         create<MavenPublication>("mavenPub") {
             pom {
