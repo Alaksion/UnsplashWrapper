@@ -1,3 +1,5 @@
+import buildlogic.BuildSettings
+
 plugins {
     `maven-publish`
     signing

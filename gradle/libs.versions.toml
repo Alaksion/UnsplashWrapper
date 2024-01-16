@@ -5,6 +5,7 @@ ktor = "2.3.7"
 coroutines = "1.7.3"
 detekt = "1.23.3"
 androidxStartup = "1.1.1"
+vanniktech = "0.27.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -37,3 +38,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+vanniktech = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }

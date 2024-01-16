@@ -16,4 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "UnsplashWrapper"
 include(":shared")
-includeBuild("build-logic")

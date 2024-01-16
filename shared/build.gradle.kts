@@ -1,14 +1,13 @@
+import buildlogic.BuildSettings
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.detekt)
-    id("publish")
+    alias(libs.plugins.vanniktech)
 }
-
-group = BuildSettings.GROUP
-version = BuildSettings.VERSION
 
 kotlin {
     androidTarget {
@@ -51,7 +50,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.androidx.startup)
-            implementation("io.github.alaksion:shared-android:0.0.1")
+//            implementation("io.github.alaksion:shared-android:0.0.1")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -77,3 +76,33 @@ detekt {
 
     config.setFrom(files("$rootDir/configuration/detekt/config.yml"))
 }
+
+mavenPublishing {
+    coordinates(
+        groupId = BuildSettings.GROUP,
+        version = BuildSettings.VERSION,
+        artifactId = BuildSettings.ARTIFACT
+    )
+    pom {
+        name = "unsplash-wrapper"
+        description =
+            "Wrapper SDK of the Unsplash public API. https://unsplash.com/documentation#creating-a-developer-account"
+        licenses {
+            licenses {
+                name = "MIT License"
+                url = "https://opensource.org/license/mit/"
+            }
+        }
+        developers {
+            developer {
+                id = "Alaksion"
+                name = "Lucca Beurmann"
+                email = "lbeurmann.dev@gmail.com"
+            }
+        }
+        scm {
+            url = "https://github.com/Alaksion/UnsplashWrapper"
+        }
+    }
+}
+
