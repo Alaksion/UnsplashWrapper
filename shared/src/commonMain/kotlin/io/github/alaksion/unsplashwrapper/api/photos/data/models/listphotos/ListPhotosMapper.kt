@@ -3,12 +3,12 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUrl
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotos
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
 
 internal object ListPhotosMapper {
 
-    fun map(response: ListPhotosResponse): ListPhotos {
-        return ListPhotos(
+    fun map(response: ListPhotosResponse): ListPhoto {
+        return ListPhoto(
             id = response.id,
             createdAt = response.createdAt,
             updatedAt = response.updatedAt,

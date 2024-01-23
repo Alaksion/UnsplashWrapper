@@ -2,7 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listp
 
 import kotlinx.datetime.LocalDateTime
 
-data class ListPhotos(
+data class ListPhoto(
     val id: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,

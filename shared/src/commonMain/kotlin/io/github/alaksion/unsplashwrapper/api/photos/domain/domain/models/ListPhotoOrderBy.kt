@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models
 
-enum class PhotoOrderBy {
+enum class ListPhotoOrderBy {
     Latest,
     Oldest,
     Popular;

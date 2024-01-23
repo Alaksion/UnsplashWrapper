@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.remote
 
-import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotosOrderByRequest
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosOrderByRequest
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosResponse
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
@@ -16,7 +16,7 @@ internal interface PhotosRemoteDataSource {
     suspend fun listPhotos(
         page: Int = 1,
         resultsPerPage: Int = 10,
-        orderBy: PhotosOrderByRequest,
+        orderBy: ListPhotosOrderByRequest,
     ): List<ListPhotosResponse>
 }
 
@@ -28,7 +28,7 @@ internal class PhotosRemoteDataSourceImpl private constructor(
     override suspend fun listPhotos(
         page: Int,
         resultsPerPage: Int,
-        orderBy: PhotosOrderByRequest,
+        orderBy: ListPhotosOrderByRequest,
     ): List<ListPhotosResponse> {
         return withContext(dispatcher) {
             httpClient.client

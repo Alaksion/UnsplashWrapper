@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -23,26 +25,9 @@ internal data class ListPhotosResponse(
     val likedByUser: Boolean,
     val description: String,
     val user: ListPhotoUserResponse,
-    val urls: ListPhotoUrlResponse,
-    val linksResponse: ListPhotoLinksResponse,
+    val urls: PhotoUrlResponse,
+    val linksResponse: PhotoLinksResponse,
     @SerialName("current_user_collections") val currentUserCollections: List<ListPhotoCollectionsResponse>
-)
-
-@Serializable
-internal data class ListPhotoUrlResponse(
-    val raw: String,
-    val full: String,
-    val regular: String,
-    val small: String,
-    val thumb: String,
-)
-
-@Serializable
-internal data class ListPhotoLinksResponse(
-    val self: String,
-    val html: String,
-    val download: String,
-    @SerialName("download_location") val downloadLocation: String,
 )
 
 @Serializable

@@ -1,11 +1,11 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.repository
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosMapper
-import io.github.alaksion.unsplashwrapper.api.photos.data.models.toData
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.toData
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSource
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSourceImpl
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoOrderBy
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotos
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.ListPhotoOrderBy
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
 
 internal class UnsplashPhotosRepositoryImpl private constructor(
@@ -15,8 +15,8 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
     override suspend fun getPhotos(
         page: Int,
         resultsPerPage: Int,
-        orderBy: PhotoOrderBy
-    ): List<ListPhotos> =
+        orderBy: ListPhotoOrderBy
+    ): List<ListPhoto> =
         photosRemoteDataSource.listPhotos(
             page = page,
             resultsPerPage = resultsPerPage,

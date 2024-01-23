@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.photouser.PhotoUserLinksResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -17,16 +18,7 @@ internal data class ListPhotoUserResponse(
     @SerialName("instagram_username") val instagramUserName: String,
     @SerialName("twitter_username") val twitterUsername: String,
     @SerialName("profile_image") val profileImage: ListPhotoUserProfilePictureResponse,
-    val links: ListPhotoUserLinksResponse
-)
-
-@Serializable
-internal data class ListPhotoUserLinksResponse(
-    val self: String,
-    val html: String,
-    val portfolio: String,
-    val photos: String,
-    val likes: String,
+    val links: PhotoUserLinksResponse,
 )
 
 @Serializable
