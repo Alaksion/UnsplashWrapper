@@ -1,9 +1,9 @@
-package io.github.alaksion.unsplashwrapper.platform
+package io.github.alaksion.unsplashwrapper.platform.auth
 
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorageImpl
 
-internal interface AuthManager {
+internal interface TokenManager {
     fun storePublicKey(key: String)
     fun getPublicKey(): String?
 
@@ -12,9 +12,9 @@ internal interface AuthManager {
 
 }
 
-internal class AuthenticationManager private constructor(
+internal class TokenManagerImplementation private constructor(
     private val localStorage: LocalStorage
-) : AuthManager {
+) : TokenManager {
 
     override fun storePublicKey(key: String) =
         localStorage.putString(
@@ -36,7 +36,7 @@ internal class AuthenticationManager private constructor(
         const val PUBLIC_KEY = "unsplash_public_key"
         const val USER_TOKEN = "unsplash_user_token"
 
-        val Instance: AuthManager = AuthenticationManager(
+        val Instance: TokenManager = TokenManagerImplementation(
             localStorage = LocalStorageImpl.Instace
         )
     }

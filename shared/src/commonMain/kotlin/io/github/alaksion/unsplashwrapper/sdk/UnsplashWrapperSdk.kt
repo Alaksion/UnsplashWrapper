@@ -2,18 +2,18 @@ package io.github.alaksion.unsplashwrapper.sdk
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.repository.UnsplashPhotosRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
-import io.github.alaksion.unsplashwrapper.platform.AuthManager
-import io.github.alaksion.unsplashwrapper.platform.AuthenticationManager
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
 
 interface UnsplashSdk {
     fun initialize(apiKey: String)
 }
 
 class UnsplashWrapperSdk private constructor(
-    private val authManager: AuthManager
+    private val tokenManager: TokenManager
 ) : UnsplashSdk {
     override fun initialize(apiKey: String) {
-        authManager.storePublicKey(apiKey)
+        tokenManager.storePublicKey(apiKey)
     }
 
     val photosRepository: UnsplashPhotosRepository =
@@ -21,7 +21,7 @@ class UnsplashWrapperSdk private constructor(
 
     companion object {
         val Instance = UnsplashWrapperSdk(
-            authManager = AuthenticationManager.Instance
+            tokenManager = TokenManagerImplementation.Instance
         )
     }
 }

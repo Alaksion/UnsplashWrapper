@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.platform.httpclient
 
-import io.github.alaksion.unsplashwrapper.platform.AuthManager
-import io.github.alaksion.unsplashwrapper.platform.AuthenticationManager
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.SerializationError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
@@ -22,14 +22,14 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
 internal class UnsplashHttpClient private constructor(
-    private val authManager: AuthManager
+    private val tokenManager: TokenManager
 ) {
     val client = HttpClient() {
         install(DefaultRequest) {
-            authManager.getUserToken()?.let { userToken ->
+            tokenManager.getUserToken()?.let { userToken ->
                 bearerAuth(userToken)
 
-            } ?: header("Authorization", "Client-ID ${authManager.getPublicKey()}")
+            } ?: header("Authorization", "Client-ID ${tokenManager.getPublicKey()}")
 
             header("Version", UnsplashSdkConfig.version)
         }
@@ -80,7 +80,7 @@ internal class UnsplashHttpClient private constructor(
 
     companion object {
         val Instance = UnsplashHttpClient(
-            authManager = AuthenticationManager.Instance
+            tokenManager = TokenManagerImplementation.Instance
         )
     }
 }
