@@ -16,8 +16,8 @@ class UnsplashWrapperSdk private constructor(
         tokenManager.storePublicKey(apiKey)
     }
 
-    val photosRepository: UnsplashPhotosRepository =
-        UnsplashPhotosRepositoryImpl.Instace
+    val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.Instace }
+
 
     companion object {
         val Instance = UnsplashWrapperSdk(
