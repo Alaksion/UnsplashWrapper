@@ -6,6 +6,9 @@ coroutines = "1.7.3"
 detekt = "1.23.3"
 androidxStartup = "1.1.1"
 vanniktech = "0.27.0"
+immutablecolletions = "0.3.7"
+compose-core = "1.5.11"
+compose-compiler = "1.4.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -21,6 +24,10 @@ ktor-client-negotiation = { module = "io.ktor:ktor-client-content-negotiation", 
 #Ktx
 ktx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.6.0" }
 ktx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.5.0" }
+ktx-immutablecollections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "immutablecolletions" }
+
+#Compose
+compose-runtime = {module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-core"}
 
 #Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }

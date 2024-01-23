@@ -42,6 +42,8 @@ kotlin {
             implementation(libs.ktx.serialization)
             implementation(libs.ktx.datetime)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktx.immutablecollections)
+            implementation(libs.compose.runtime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -62,6 +64,9 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 26
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
