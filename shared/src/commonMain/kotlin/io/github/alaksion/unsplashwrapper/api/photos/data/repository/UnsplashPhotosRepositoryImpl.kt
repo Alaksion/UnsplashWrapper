@@ -30,7 +30,7 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
         photosRemoteDataSource.photoDetails(id).toDomain()
 
     companion object {
-        val Instace = UnsplashPhotosRepositoryImpl(
+        val INSTANCE = UnsplashPhotosRepositoryImpl(
             photosRemoteDataSource = PhotosRemoteDataSourceImpl.Instance
         )
     }

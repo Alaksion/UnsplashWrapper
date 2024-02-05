@@ -2,6 +2,8 @@ package io.github.alaksion.unsplashwrapper.sdk
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.repository.UnsplashPhotosRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
+import io.github.alaksion.unsplashwrapper.api.search.data.repository.UnsplashSearchRepositoryImpl
+import io.github.alaksion.unsplashwrapper.api.search.domain.repository.UnsplashSearchRepository
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
 
@@ -16,7 +18,8 @@ class UnsplashWrapperSdk private constructor(
         tokenManager.storePublicKey(apiKey)
     }
 
-    val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.Instace }
+    val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
+    val searchRepository: UnsplashSearchRepository by lazy { UnsplashSearchRepositoryImpl.INSTANCE }
 
 
     companion object {
