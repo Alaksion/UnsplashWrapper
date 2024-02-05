@@ -2,10 +2,10 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoLinks
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUrl
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
 
 internal object ListPhotosMapper {
 
@@ -30,8 +30,8 @@ internal object ListPhotosMapper {
         )
     }
 
-    private fun urlMapper(response: PhotoUrlResponse): ListPhotoUrl =
-        ListPhotoUrl(
+    private fun urlMapper(response: PhotoUrlResponse): PhotoUrl =
+        PhotoUrl(
             raw = response.raw,
             full = response.full,
             regular = response.regular,
@@ -39,8 +39,8 @@ internal object ListPhotosMapper {
             thumb = response.thumb,
         )
 
-    private fun linksMappers(response: PhotoLinksResponse): ListPhotoLinks =
-        ListPhotoLinks(
+    private fun linksMappers(response: PhotoLinksResponse): PhotoLinks =
+        PhotoLinks(
             self = response.self,
             html = response.html,
             download = response.download,

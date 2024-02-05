@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.photouser.PhotoUserLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUser
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUserLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUserProfilePicture
@@ -29,7 +30,7 @@ internal object ListPhotosUserMapper {
             small = response.small,
         )
 
-    private fun linksMapper(response: ListPhotoUserLinksResponse): ListPhotoUserLinks =
+    private fun linksMapper(response: PhotoUserLinksResponse): ListPhotoUserLinks =
         ListPhotoUserLinks(
             self = response.self,
             html = response.html,
