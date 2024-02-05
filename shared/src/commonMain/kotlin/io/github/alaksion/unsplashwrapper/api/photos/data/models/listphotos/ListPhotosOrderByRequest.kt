@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.ListPhotoOrderBy
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoOrderBy
 import kotlinx.serialization.Serializable
 
 @Serializable

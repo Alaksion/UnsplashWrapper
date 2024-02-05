@@ -3,7 +3,12 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.photodetails
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.photouser.PhotoUserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.Author
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -33,7 +38,28 @@ internal data class PhotoDetailsResponse(
     val urls: PhotoUrlResponse,
     val links: PhotoLinksResponse,
     val user: PhotoDetailsUserResponse
-)
+) {
+    fun toDomain(): PhotoDetails = PhotoDetails(
+        id = this.id,
+        createdAt = this.createdAt,
+        updatedAt = this.updatedAt,
+        width = this.width,
+        height = this.height,
+        color = this.color,
+        blurHash = this.blurHash,
+        downloads = this.downloads,
+        likes = this.likes,
+        likedByUser = this.likedByUser,
+        isPublicDomain = this.isPublicDomain,
+        description = this.description,
+        exif = this.exif.toDomain(),
+        location = this.location.toDomain(),
+        tags = this.tags.map { it.title }.toPersistentList(),
+        urls = this.urls.toDomain(),
+        links = this.links.toDomain(),
+        author = this.user.toDomain(),
+    )
+}
 
 /*
 * Exif stands for Exchangeable image file format. This is an industry standard specification for
@@ -49,14 +75,31 @@ internal data class PhotoDetailsExifResponse(
     val aperture: String,
     @SerialName("focal_length") val focalLength: String,
     val iso: Int
-)
+) {
+    fun toDomain(): PhotoExif = PhotoExif(
+        make = this.make,
+        model = this.model,
+        name = this.name,
+        exposureTime = this.exposureTime,
+        aperture = this.aperture,
+        focalLength = this.focalLength,
+        iso = this.iso,
+    )
+}
 
 @Serializable
 internal data class PhotoDetailsLocationResponse(
     val city: String,
     val country: String,
     val position: PhotoDetailsLocationCoordinatesResponse
-)
+) {
+    fun toDomain(): PhotoLocation = PhotoLocation(
+        city = this.city,
+        country = this.country,
+        latitude = this.position.latitude,
+        longitude = this.position.longitude
+    )
+}
 
 @Serializable
 internal data class PhotoDetailsLocationCoordinatesResponse(
@@ -84,4 +127,18 @@ internal data class PhotoDetailsUserResponse(
     @SerialName("total_photos") val totalPhotos: Int,
     @SerialName("total_collections") val totalCollections: Int,
     val links: PhotoUserLinksResponse
-)
+) {
+    fun toDomain(): Author = Author(
+        id = this.id,
+        updatedAt = this.updatedAt,
+        username = this.username,
+        name = this.name,
+        portfolioUrl = this.portfolioUrl,
+        bio = this.bio,
+        location = this.location,
+        totalLikes = this.totalLikes,
+        totalPhotos = this.totalPhotos,
+        totalCollections = this.totalCollections,
+        links = this.links.toDomain(),
+    )
+}

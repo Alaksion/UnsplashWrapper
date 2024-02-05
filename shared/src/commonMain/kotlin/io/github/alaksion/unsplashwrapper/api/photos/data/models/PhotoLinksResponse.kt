@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models
 
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,4 +10,11 @@ internal data class PhotoLinksResponse(
     val html: String,
     val download: String,
     @SerialName("download_location") val downloadLocation: String,
-)
+) {
+    fun toDomain(): PhotoLinks = PhotoLinks(
+        self = this.self,
+        html = this.html,
+        download = this.download,
+        downloadLocation = this.downloadLocation
+    )
+}

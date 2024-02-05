@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos
 
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
 import kotlinx.datetime.LocalDateTime
 
 data class ListPhoto(
@@ -15,24 +17,9 @@ data class ListPhoto(
     val likedByUser: Boolean,
     val description: String,
     val user: ListPhotoUser,
-    val urls: ListPhotoUrl,
-    val linksResponse: ListPhotoLinks,
+    val urls: PhotoUrl,
+    val linksResponse: PhotoLinks,
     val currentUserCollections: List<ListPhotoCollections>
-)
-
-data class ListPhotoUrl(
-    val raw: String,
-    val full: String,
-    val regular: String,
-    val small: String,
-    val thumb: String,
-)
-
-data class ListPhotoLinks(
-    val self: String,
-    val html: String,
-    val download: String,
-    val downloadLocation: String,
 )
 
 data class ListPhotoCollections(

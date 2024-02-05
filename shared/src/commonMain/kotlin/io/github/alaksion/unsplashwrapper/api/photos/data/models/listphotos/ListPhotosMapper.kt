@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoUrl
@@ -28,7 +30,7 @@ internal object ListPhotosMapper {
         )
     }
 
-    private fun urlMapper(response: ListPhotoUrlResponse): ListPhotoUrl =
+    private fun urlMapper(response: PhotoUrlResponse): ListPhotoUrl =
         ListPhotoUrl(
             raw = response.raw,
             full = response.full,
@@ -37,7 +39,7 @@ internal object ListPhotosMapper {
             thumb = response.thumb,
         )
 
-    private fun linksMappers(response: ListPhotoLinksResponse): ListPhotoLinks =
+    private fun linksMappers(response: PhotoLinksResponse): ListPhotoLinks =
         ListPhotoLinks(
             self = response.self,
             html = response.html,

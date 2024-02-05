@@ -4,9 +4,12 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.List
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.toData
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSource
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSourceImpl
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.ListPhotoOrderBy
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoOrderBy
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 
 internal class UnsplashPhotosRepositoryImpl private constructor(
     private val photosRemoteDataSource: PhotosRemoteDataSource
@@ -16,12 +19,15 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
         page: Int,
         resultsPerPage: Int,
         orderBy: ListPhotoOrderBy
-    ): List<ListPhoto> =
+    ): ImmutableList<ListPhoto> =
         photosRemoteDataSource.listPhotos(
             page = page,
             resultsPerPage = resultsPerPage,
             orderBy = orderBy.toData()
-        ).map { ListPhotosMapper.map(it) }
+        ).map { ListPhotosMapper.map(it) }.toPersistentList()
+
+    override suspend fun getPhotoDetails(id: String): PhotoDetails =
+        photosRemoteDataSource.photoDetails(id).toDomain()
 
     companion object {
         val Instace = UnsplashPhotosRepositoryImpl(
