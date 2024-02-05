@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.search.data.remote
 
 import io.github.alaksion.unsplashwrapper.api.search.data.models.photos.SearchPhotosResponse
-import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchPhotosParametersRequest
+import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchPhotosParameters
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.call.body
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 internal interface SearchRemoteDataSource {
     suspend fun searchPhotos(
-        parametersRequest: SearchPhotosParametersRequest
+        parametersRequest: SearchPhotosParameters
     ): SearchPhotosResponse
 }
 
@@ -23,7 +23,7 @@ internal class SearchRemoteDataSourceImpl private constructor(
     private val httpClient: UnsplashHttpClient,
 ) : SearchRemoteDataSource {
 
-    override suspend fun searchPhotos(parametersRequest: SearchPhotosParametersRequest): SearchPhotosResponse =
+    override suspend fun searchPhotos(parametersRequest: SearchPhotosParameters): SearchPhotosResponse =
         withContext(dispatcher) {
             httpClient.client
                 .get(

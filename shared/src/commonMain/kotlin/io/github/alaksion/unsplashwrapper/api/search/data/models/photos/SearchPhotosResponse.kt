@@ -1,6 +1,11 @@
 package io.github.alaksion.unsplashwrapper.api.search.data.models.photos
 
+import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotoUrls
+import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotos
+import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosItem
+import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosLinks
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -11,7 +16,13 @@ internal data class SearchPhotosResponse(
     val total: Int,
     @SerialName("total_pages") val totalPages: Int,
     val results: ImmutableList<SearchPhotosItemResponse>
-)
+) {
+    fun toDomain(): SearchedPhotos = SearchedPhotos(
+        resultsCount = this.total,
+        totalPages = this.totalPages,
+        results = this.results.map { it.toDomain() }.toPersistentList()
+    )
+}
 
 @Serializable
 internal data class SearchPhotosItemResponse(
@@ -29,7 +40,22 @@ internal data class SearchPhotosItemResponse(
     val user: SearchPhotosUserResponse,
     val urlResponse: SearchPhotosUrlResponse,
     val links: SearchPhotosLinksResponse
-)
+) {
+    fun toDomain(): SearchedPhotosItem = SearchedPhotosItem(
+        id = this.id,
+        createdAt = this.createdAt,
+        width = this.width,
+        height = this.height,
+        color = this.color,
+        blurHash = this.blurHash,
+        likes = this.likes,
+        likedByUser = this.likedByUser,
+        description = this.description,
+        user = this.user.toDomain(),
+        urlResponse = this.urlResponse.toDomain(),
+        links = this.links.toDomain(),
+    )
+}
 
 @Serializable
 internal data class SearchPhotosUrlResponse(
@@ -38,12 +64,26 @@ internal data class SearchPhotosUrlResponse(
     val regular: String,
     val small: String,
     val thumb: String,
-)
+) {
+    fun toDomain(): SearchedPhotoUrls = SearchedPhotoUrls(
+        raw = this.raw,
+        full = this.full,
+        regular = this.regular,
+        small = this.small,
+        thumb = this.thumb,
+    )
+}
 
 @Serializable
 internal data class SearchPhotosLinksResponse(
     val self: String,
     val html: String,
     val download: String,
-)
+) {
+    fun toDomain(): SearchedPhotosLinks = SearchedPhotosLinks(
+        self = this.self,
+        html = this.html,
+        download = this.download
+    )
+}
 

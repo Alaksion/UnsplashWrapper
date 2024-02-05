@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.search.domain.models.photos
 
-public data class SearchPhotosParametersRequest(
+public data class SearchPhotosParameters(
     val query: String,
     val page: Int = 0,
     val perPage: Int = 10,
@@ -12,21 +12,21 @@ public data class SearchPhotosParametersRequest(
 )
 
 public enum class SearchPhotosOrderBy(
-    val primitiveValue: String
+    internal val primitiveValue: String
 ) {
     Latest("latest"),
     Relevant("relevant");
 }
 
 public enum class SearchPhotosContentFilter(
-    val primitiveValue: String,
+    internal val primitiveValue: String,
 ) {
     Low("low"),
     High("high");
 }
 
 public enum class SearchPhotosColor(
-    val primitiveValue: String,
+    internal val primitiveValue: String,
 ) {
     BlackAndWhite("black_and_white"),
     Black("black"),
@@ -42,7 +42,7 @@ public enum class SearchPhotosColor(
 }
 
 public enum class SearchPhotosOrientation(
-    val primitiveValue: String,
+    internal val primitiveValue: String,
 ) {
     Landscape("landscape"),
     Portrait("portrait"),
