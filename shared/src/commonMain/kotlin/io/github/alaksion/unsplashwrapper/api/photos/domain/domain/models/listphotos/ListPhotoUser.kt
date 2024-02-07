@@ -4,14 +4,14 @@ data class ListPhotoUser(
     val id: String,
     val username: String,
     val name: String,
-    val portfolioUrl: String,
+    val portfolioUrl: String?,
     val bio: String,
-    val location: String,
+    val location: String?,
     val totalLikes: Int,
     val totalPhotos: Int,
     val totalCollections: Int,
-    val instagramUserName: String,
-    val twitterUsername: String,
+    val instagramUserName: String?,
+    val twitterUsername: String?,
     val profileImage: ListPhotoUserProfilePicture,
     val links: ListPhotoUserLinks
 )
