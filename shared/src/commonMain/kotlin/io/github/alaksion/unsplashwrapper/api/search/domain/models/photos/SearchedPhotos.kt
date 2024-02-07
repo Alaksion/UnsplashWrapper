@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.search.domain.models.photos
 
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.Instant
 
 data class SearchedPhotos(
     val resultsCount: Int,
@@ -11,7 +11,7 @@ data class SearchedPhotos(
 
 data class SearchedPhotosItem(
     val id: String,
-    val createdAt: LocalDateTime,
+    val createdAt: Instant,
     val width: Int,
     val height: Int,
     val color: String,

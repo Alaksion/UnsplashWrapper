@@ -2,8 +2,8 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
+import kotlinx.datetime.Instant
+import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,11 +11,11 @@ import kotlinx.serialization.Serializable
 internal data class ListPhotosResponse(
     val id: String,
     @SerialName("created_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val createdAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val createdAt: Instant,
     @SerialName("updated_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val updatedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val updatedAt: Instant,
     val width: Int,
     val height: Int,
     val color: String,
@@ -35,13 +35,13 @@ internal data class ListPhotoCollectionsResponse(
     val id: Int,
     val title: String,
     @SerialName("published_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val publishedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val publishedAt: Instant,
     @SerialName("last_collected_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val lastCollectedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val lastCollectedAt: Instant,
     @SerialName("updated_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val updatedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val updatedAt: Instant,
     @SerialName("cover_photo") val coverPhoto: String? = null
 )

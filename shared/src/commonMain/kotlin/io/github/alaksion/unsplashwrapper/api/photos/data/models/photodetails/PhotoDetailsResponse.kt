@@ -9,8 +9,8 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photod
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
+import kotlinx.datetime.Instant
+import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,11 +18,11 @@ import kotlinx.serialization.Serializable
 internal data class PhotoDetailsResponse(
     val id: String,
     @SerialName("created_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val createdAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val createdAt: Instant,
     @SerialName("updated_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val updatedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val updatedAt: Instant,
     val width: Int,
     val height: Int,
     val color: String,
@@ -116,8 +116,8 @@ internal data class PhotoDetailsTagResponse(
 internal data class PhotoDetailsUserResponse(
     val id: String,
     @SerialName("updated_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val updatedAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val updatedAt: Instant,
     val username: String,
     val name: String,
     @SerialName("portfolio_url") val portfolioUrl: String,

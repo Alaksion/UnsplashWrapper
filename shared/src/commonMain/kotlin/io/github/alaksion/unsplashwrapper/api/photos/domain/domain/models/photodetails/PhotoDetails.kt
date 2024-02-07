@@ -4,12 +4,12 @@ package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photo
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.Instant
 
 data class PhotoDetails(
     val id: String,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val width: Int,
     val height: Int,
     val color: String,
@@ -51,7 +51,7 @@ data class PhotoLocation(
 
 data class Author(
     val id: String,
-    val updatedAt: LocalDateTime,
+    val updatedAt: Instant,
     val username: String,
     val name: String,
     val portfolioUrl: String,

@@ -4,10 +4,9 @@ import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.Search
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotos
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosItem
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosLinks
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.serializers.LocalDateTimeIso8601Serializer
+import kotlinx.datetime.Instant
+import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,8 +27,8 @@ internal data class SearchPhotosResponse(
 internal data class SearchPhotosItemResponse(
     val id: String,
     @SerialName("created_at")
-    @Serializable(with = LocalDateTimeIso8601Serializer::class)
-    val createdAt: LocalDateTime,
+    @Serializable(with = InstantIso8601Serializer::class)
+    val createdAt: Instant,
     val width: Int,
     val height: Int,
     val color: String,
