@@ -19,7 +19,7 @@ internal interface PhotosRemoteDataSource {
         page: Int = 1,
         resultsPerPage: Int = 10,
         orderBy: ListPhotosOrderByRequest,
-    ): ImmutableList<ListPhotosResponse>
+    ): List<ListPhotosResponse>
 
     suspend fun photoDetails(
         photoId: String
@@ -35,7 +35,7 @@ internal class PhotosRemoteDataSourceImpl private constructor(
         page: Int,
         resultsPerPage: Int,
         orderBy: ListPhotosOrderByRequest,
-    ): ImmutableList<ListPhotosResponse> {
+    ): List<ListPhotosResponse> {
         return withContext(dispatcher) {
             httpClient.client
                 .get(

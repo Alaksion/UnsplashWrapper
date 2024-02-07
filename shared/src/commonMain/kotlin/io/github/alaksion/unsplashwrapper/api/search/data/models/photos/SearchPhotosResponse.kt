@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 internal data class SearchPhotosResponse(
     val total: Int,
     @SerialName("total_pages") val totalPages: Int,
-    val results: ImmutableList<SearchPhotosItemResponse>
+    val results: List<SearchPhotosItemResponse>
 ) {
     fun toDomain(): SearchedPhotos = SearchedPhotos(
         resultsCount = this.total,
