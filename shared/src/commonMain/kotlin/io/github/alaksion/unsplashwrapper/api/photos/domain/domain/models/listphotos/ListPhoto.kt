@@ -18,7 +18,7 @@ data class ListPhoto(
     val description: String,
     val user: ListPhotoUser,
     val urls: PhotoUrl,
-    val linksResponse: PhotoLinks,
+    val links: PhotoLinks,
     val currentUserCollections: List<ListPhotoCollections>
 )
 

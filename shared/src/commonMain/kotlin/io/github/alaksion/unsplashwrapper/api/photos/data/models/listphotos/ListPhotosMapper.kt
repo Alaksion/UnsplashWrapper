@@ -23,7 +23,7 @@ internal object ListPhotosMapper {
             description = response.description,
             user = ListPhotosUserMapper.map(response.user),
             urls = urlMapper(response.urls),
-            linksResponse = linksMappers(response.linksResponse),
+            links = linksMappers(response.links),
             currentUserCollections = response.currentUserCollections.map {
                 collectionMapper(it)
             },
