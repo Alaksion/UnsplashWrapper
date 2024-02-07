@@ -15,7 +15,7 @@ data class ListPhoto(
     val blurHash: String,
     val likes: Int,
     val likedByUser: Boolean,
-    val description: String,
+    val description: String?,
     val user: ListPhotoUser,
     val urls: PhotoUrl,
     val links: PhotoLinks,

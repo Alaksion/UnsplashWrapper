@@ -23,7 +23,7 @@ internal data class ListPhotosResponse(
     val likes: Int,
     @SerialName("liked_by_user")
     val likedByUser: Boolean,
-    val description: String,
+    val description: String? = null,
     val user: ListPhotoUserResponse,
     val urls: PhotoUrlResponse,
     val links: PhotoLinksResponse,
