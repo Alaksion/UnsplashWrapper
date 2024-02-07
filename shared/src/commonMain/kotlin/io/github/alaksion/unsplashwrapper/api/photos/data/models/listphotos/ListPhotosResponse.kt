@@ -26,7 +26,7 @@ internal data class ListPhotosResponse(
     val description: String,
     val user: ListPhotoUserResponse,
     val urls: PhotoUrlResponse,
-    val linksResponse: PhotoLinksResponse,
+    val links: PhotoLinksResponse,
     @SerialName("current_user_collections") val currentUserCollections: List<ListPhotoCollectionsResponse>
 )
 
