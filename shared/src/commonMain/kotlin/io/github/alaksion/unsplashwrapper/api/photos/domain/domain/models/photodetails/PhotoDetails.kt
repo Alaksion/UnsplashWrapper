@@ -33,12 +33,13 @@ data class PhotoDetails(
 * https://pt.wikipedia.org/wiki/Exchangeable_image_file_format
 * */
 data class PhotoExif(
-    val make: String,
-    val model: String,
-    val name: String,
-    val exposureTime: String,
-    val aperture: String, val focalLength: String,
-    val iso: Int
+    val make: String?,
+    val model: String?,
+    val name: String?,
+    val exposureTime: String?,
+    val aperture: String?,
+    val focalLength: String,
+    val iso: Int?
 )
 
 
@@ -58,7 +59,7 @@ data class Author(
     val updatedAt: Instant,
     val username: String,
     val name: String,
-    val portfolioUrl: String,
+    val portfolioUrl: String?,
     val bio: String,
     val location: String,
     val totalLikes: Int,

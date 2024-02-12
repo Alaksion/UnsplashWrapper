@@ -8,7 +8,6 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photod
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoPosition
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
@@ -35,7 +34,7 @@ internal data class PhotoDetailsResponse(
     val description: String?,
     val exif: PhotoDetailsExifResponse,
     val location: PhotoDetailsLocationResponse,
-    val tags: ImmutableList<PhotoDetailsTagResponse>,
+    val tags: List<PhotoDetailsTagResponse>,
     val urls: PhotoUrlResponse,
     val links: PhotoLinksResponse,
     val user: PhotoDetailsUserResponse
@@ -69,13 +68,13 @@ internal data class PhotoDetailsResponse(
 * */
 @Serializable
 internal data class PhotoDetailsExifResponse(
-    val make: String,
-    val model: String,
-    val name: String,
-    @SerialName("exposure_time") val exposureTime: String,
-    val aperture: String,
+    val make: String? = null,
+    val model: String? = null,
+    val name: String? = null,
+    @SerialName("exposure_time") val exposureTime: String? = null,
+    val aperture: String? = null,
     @SerialName("focal_length") val focalLength: String,
-    val iso: Int
+    val iso: Int? = null
 ) {
     fun toDomain(): PhotoExif = PhotoExif(
         make = this.make,
@@ -125,7 +124,7 @@ internal data class PhotoDetailsUserResponse(
     val updatedAt: Instant,
     val username: String,
     val name: String,
-    @SerialName("portfolio_url") val portfolioUrl: String,
+    @SerialName("portfolio_url") val portfolioUrl: String?,
     val bio: String,
     val location: String,
     @SerialName("total_likes") val totalLikes: Int,
