@@ -10,7 +10,7 @@ internal data class ListPhotoUserResponse(
     val username: String,
     val name: String,
     @SerialName("portfolio_url") val portfolioUrl: String? = null,
-    val bio: String,
+    val bio: String? = null,
     val location: String? = null,
     @SerialName("total_likes") val totalLikes: Int,
     @SerialName("total_photos") val totalPhotos: Int,

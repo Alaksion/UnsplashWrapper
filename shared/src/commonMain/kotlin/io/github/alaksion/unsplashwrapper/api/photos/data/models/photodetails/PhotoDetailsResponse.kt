@@ -7,6 +7,7 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photod
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoPosition
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
@@ -29,9 +30,9 @@ internal data class PhotoDetailsResponse(
     @SerialName("blur_hash") val blurHash: String,
     val downloads: Int,
     val likes: Int,
-    @SerialName("liked_by_user") val likedByUser: String,
+    @SerialName("liked_by_user") val likedByUser: Boolean,
     @SerialName("public_domain") val isPublicDomain: Boolean,
-    val description: String,
+    val description: String?,
     val exif: PhotoDetailsExifResponse,
     val location: PhotoDetailsLocationResponse,
     val tags: ImmutableList<PhotoDetailsTagResponse>,
@@ -89,15 +90,14 @@ internal data class PhotoDetailsExifResponse(
 
 @Serializable
 internal data class PhotoDetailsLocationResponse(
-    val city: String,
-    val country: String,
-    val position: PhotoDetailsLocationCoordinatesResponse
+    val city: String?,
+    val country: String?,
+    val position: PhotoDetailsLocationCoordinatesResponse?
 ) {
     fun toDomain(): PhotoLocation = PhotoLocation(
         city = this.city,
         country = this.country,
-        latitude = this.position.latitude,
-        longitude = this.position.longitude
+        position = this.position?.toDomain(),
     )
 }
 
@@ -105,7 +105,12 @@ internal data class PhotoDetailsLocationResponse(
 internal data class PhotoDetailsLocationCoordinatesResponse(
     val latitude: Double,
     val longitude: Double
-)
+) {
+    fun toDomain(): PhotoPosition = PhotoPosition(
+        latitude = this.latitude,
+        longitude = this.longitude
+    )
+}
 
 @Serializable
 internal data class PhotoDetailsTagResponse(

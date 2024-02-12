@@ -16,9 +16,9 @@ data class PhotoDetails(
     val blurHash: String,
     val downloads: Int,
     val likes: Int,
-    val likedByUser: String,
+    val likedByUser: Boolean,
     val isPublicDomain: Boolean,
-    val description: String,
+    val description: String?,
     val exif: PhotoExif,
     val location: PhotoLocation,
     val tags: ImmutableList<String>,
@@ -43,8 +43,12 @@ data class PhotoExif(
 
 
 data class PhotoLocation(
-    val city: String,
-    val country: String,
+    val city: String?,
+    val country: String?,
+    val position: PhotoPosition?
+)
+
+data class PhotoPosition(
     val latitude: Double,
     val longitude: Double
 )

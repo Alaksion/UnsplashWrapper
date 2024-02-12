@@ -5,7 +5,7 @@ data class ListPhotoUser(
     val username: String,
     val name: String,
     val portfolioUrl: String?,
-    val bio: String,
+    val bio: String?,
     val location: String?,
     val totalLikes: Int,
     val totalPhotos: Int,
