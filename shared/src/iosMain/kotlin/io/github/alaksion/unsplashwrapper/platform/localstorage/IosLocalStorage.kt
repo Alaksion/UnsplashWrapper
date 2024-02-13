@@ -3,7 +3,7 @@ package io.github.alaksion.unsplashwrapper.platform.localstorage
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.setValue
 
-actual class LocalStorageImpl : LocalStorage {
+internal actual class LocalStorageImpl : LocalStorage {
 
     private val userDefaults by lazy {
         NSUserDefaults.standardUserDefaults()
