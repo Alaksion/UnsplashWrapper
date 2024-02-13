@@ -20,7 +20,11 @@ data class Unknown(
     override val cause: Throwable
 ) : UnsplashError()
 
+data class BasicError(override val errors: List<String>) : UnsplashError()
+
 @Serializable
 internal data class UnsplashRemoteError(
     val errors: List<String> = listOf()
 )
+
+fun basicError(messages: String): Nothing = throw BasicError(listOf(messages))

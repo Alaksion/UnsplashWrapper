@@ -8,6 +8,8 @@ import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.Authori
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.repository.UnsplashAuthorizationRepository
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
+import io.github.alaksion.unsplashwrapper.platform.error.basicError
 
 internal class UnsplashAuthorizationRepositoryImpl(
     private val dataSource: UnsplashAuthorizationRemoteDataSource,
@@ -17,8 +19,10 @@ internal class UnsplashAuthorizationRepositoryImpl(
     override suspend fun authorize(data: AuthorizeDTO): AuthorizationResult {
         val result = dataSource.requestAuthorization(
             data = AuthorizationRequest(
-                clientId = "",
-                secretKey = "",
+                clientId = tokenManager.getToken(TokenType.PublicToken)
+                    ?: basicError("Public token not set"),
+                secretKey = tokenManager.getToken(TokenType.PrivateToken)
+                    ?: basicError("Private token not set"),
                 redirectUri = data.redirectUri,
                 code = data.code
             )

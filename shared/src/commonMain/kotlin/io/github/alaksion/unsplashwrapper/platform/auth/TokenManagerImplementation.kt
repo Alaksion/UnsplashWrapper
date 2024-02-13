@@ -4,37 +4,35 @@ import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorageImpl
 
 internal interface TokenManager {
-    fun storePublicKey(key: String)
-    fun getPublicKey(): String?
+    fun storeToken(type: TokenType, value: String)
+    fun getToken(type: TokenType): String?
 
-    fun storeUserToken(token: String)
-    fun getUserToken(): String?
+}
 
+enum class TokenType(
+    internal val key: String
+) {
+    PublicToken("public_token"),
+    PrivateToken("private_token"),
+    UserToken("user_token");
 }
 
 internal class TokenManagerImplementation private constructor(
     private val localStorage: LocalStorage
 ) : TokenManager {
 
-    override fun storePublicKey(key: String) =
+    override fun storeToken(type: TokenType, value: String) {
         localStorage.putString(
-            value = key,
-            key = PUBLIC_KEY
+            value = value,
+            key = type.key
         )
+    }
 
-    override fun getPublicKey(): String? = localStorage.getString(PUBLIC_KEY)
-
-    override fun storeUserToken(token: String) =
-        localStorage.putString(
-            value = token,
-            key = USER_TOKEN
-        )
-
-    override fun getUserToken(): String? = localStorage.getString(USER_TOKEN)
+    override fun getToken(type: TokenType): String? {
+        return localStorage.getString(type.key)
+    }
 
     internal companion object Keys {
-        const val PUBLIC_KEY = "unsplash_public_key"
-        const val USER_TOKEN = "unsplash_user_token"
 
         val Instance: TokenManager = TokenManagerImplementation(
             localStorage = LocalStorageImpl.Instace

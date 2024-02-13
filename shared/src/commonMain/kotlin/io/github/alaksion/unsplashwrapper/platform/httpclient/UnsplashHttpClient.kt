@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.platform.httpclient
 
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.SerializationError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
@@ -26,10 +27,13 @@ internal class UnsplashHttpClient private constructor(
 ) {
     val client = HttpClient() {
         install(DefaultRequest) {
-            tokenManager.getUserToken()?.let { userToken ->
+            tokenManager.getToken(TokenType.UserToken)?.let { userToken ->
                 bearerAuth(userToken)
 
-            } ?: header("Authorization", "Client-ID ${tokenManager.getPublicKey()}")
+            } ?: header(
+                "Authorization",
+                "Client-ID ${tokenManager.getToken(TokenType.PublicToken)}"
+            )
 
             header("Version", UnsplashSdkConfig.version)
         }

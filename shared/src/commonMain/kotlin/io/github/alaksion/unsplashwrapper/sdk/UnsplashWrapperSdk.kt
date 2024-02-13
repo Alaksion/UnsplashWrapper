@@ -6,16 +6,21 @@ import io.github.alaksion.unsplashwrapper.api.search.data.repository.UnsplashSea
 import io.github.alaksion.unsplashwrapper.api.search.domain.repository.UnsplashSearchRepository
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
 
 interface UnsplashSdk {
-    fun initialize(apiKey: String)
+    fun initialize(apiKey: String, privateKey: String)
 }
 
 class UnsplashWrapperSdk private constructor(
     private val tokenManager: TokenManager
 ) : UnsplashSdk {
-    override fun initialize(apiKey: String) {
-        tokenManager.storePublicKey(apiKey)
+    override fun initialize(
+        apiKey: String,
+        privateKey: String,
+    ) {
+        tokenManager.storeToken(type = TokenType.PublicToken, value = apiKey)
+        tokenManager.storeToken(type = TokenType.PrivateToken, value = privateKey)
     }
 
     val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
