@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.api.authorization.data.model
+package io.github.alaksion.unsplashwrapper.api.authorization.domain.model
 
 enum class AuthorizationScopes(
     internal val value: String
@@ -48,5 +48,11 @@ enum class AuthorizationScopes(
      * Create and update a user’s collections.
      * */
     WriteCollections("write_collections");
+
+    internal companion object {
+        fun parseFromString(raw: String): AuthorizationScopes {
+            return entries.first { it.value == raw }
+        }
+    }
 
 }
