@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.authorization.domain.model
 
-enum class AuthorizationScopes(
+enum class AuthorizationScope(
     internal val value: String
 ) {
 
@@ -50,7 +50,7 @@ enum class AuthorizationScopes(
     WriteCollections("write_collections");
 
     internal companion object {
-        fun parseFromString(raw: String): AuthorizationScopes {
+        fun parseFromString(raw: String): AuthorizationScope {
             return entries.first { it.value == raw }
         }
     }

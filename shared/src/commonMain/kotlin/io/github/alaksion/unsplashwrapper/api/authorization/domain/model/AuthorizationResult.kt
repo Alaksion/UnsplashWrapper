@@ -5,6 +5,6 @@ import kotlinx.datetime.Instant
 
 data class AuthorizationResult(
     val accessToken: String,
-    val scopes: ImmutableSet<AuthorizationScopes>,
+    val scopes: ImmutableSet<AuthorizationScope>,
     val createdAt: Instant
 )

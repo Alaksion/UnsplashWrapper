@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.authorization.data.model
 
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationResult
-import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationScopes
+import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationScope
 import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
@@ -18,7 +18,7 @@ internal data class AuthorizationResponse(
         accessToken = this.token,
         createdAt = Instant.fromEpochMilliseconds(this.createdAt),
         scopes = this.scope.split(" ")
-            .map { AuthorizationScopes.parseFromString(it) }
+            .map { AuthorizationScope.parseFromString(it) }
             .toImmutableSet()
     )
 }
