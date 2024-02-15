@@ -4,8 +4,8 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.repository.UnsplashPho
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
 import io.github.alaksion.unsplashwrapper.api.search.data.repository.UnsplashSearchRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.search.domain.repository.UnsplashSearchRepository
-import io.github.alaksion.unsplashwrapper.authentication.UnsplashAuth
-import io.github.alaksion.unsplashwrapper.authentication.UnsplashAuthImpl
+import io.github.alaksion.unsplashwrapper.platform.authentication.UnsplashAuth
+import io.github.alaksion.unsplashwrapper.platform.authentication.UnsplashAuthImpl
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
 import io.github.alaksion.unsplashwrapper.platform.token.TokenType

@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.authentication
+package io.github.alaksion.unsplashwrapper.platform.authentication
 
 import io.github.alaksion.unsplashwrapper.api.authorization.data.repository.UnsplashAuthorizationRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizeDTO
