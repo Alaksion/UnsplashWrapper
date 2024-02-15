@@ -6,9 +6,9 @@ import io.github.alaksion.unsplashwrapper.api.authorization.data.remote.Unsplash
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationResult
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizeDTO
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.repository.UnsplashAuthorizationRepository
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.basicError
 
 internal class UnsplashAuthorizationRepositoryImpl(

@@ -17,7 +17,11 @@ internal actual class LocalStorageImpl : LocalStorage {
         return userDefaults.stringForKey(key)
     }
 
+    override fun clearKey(key: String) {
+        userDefaults.removeObjectForKey(key)
+    }
+
     actual companion object Provider {
-        actual val Instace: LocalStorage = LocalStorageImpl()
+        actual val INSTANCE: LocalStorage = LocalStorageImpl()
     }
 }

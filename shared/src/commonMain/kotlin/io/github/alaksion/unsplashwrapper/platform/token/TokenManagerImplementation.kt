@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.platform.auth
+package io.github.alaksion.unsplashwrapper.platform.token
 
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorage
 import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorageImpl
@@ -6,10 +6,11 @@ import io.github.alaksion.unsplashwrapper.platform.localstorage.LocalStorageImpl
 internal interface TokenManager {
     fun storeToken(type: TokenType, value: String)
     fun getToken(type: TokenType): String?
+    fun clearToken(type: TokenType)
 
 }
 
-enum class TokenType(
+internal enum class TokenType(
     internal val key: String
 ) {
     PublicToken("public_token"),
@@ -32,10 +33,14 @@ internal class TokenManagerImplementation private constructor(
         return localStorage.getString(type.key)
     }
 
+    override fun clearToken(type: TokenType) {
+        localStorage.clearKey(type.key)
+    }
+
     internal companion object Keys {
 
         val Instance: TokenManager = TokenManagerImplementation(
-            localStorage = LocalStorageImpl.Instace
+            localStorage = LocalStorageImpl.INSTANCE
         )
     }
 

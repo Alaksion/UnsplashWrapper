@@ -4,9 +4,11 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.repository.UnsplashPho
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
 import io.github.alaksion.unsplashwrapper.api.search.data.repository.UnsplashSearchRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.search.domain.repository.UnsplashSearchRepository
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
+import io.github.alaksion.unsplashwrapper.authentication.UnsplashAuth
+import io.github.alaksion.unsplashwrapper.authentication.UnsplashAuthImpl
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 
 interface UnsplashSdk {
     fun initialize(apiKey: String, privateKey: String)
@@ -25,6 +27,8 @@ class UnsplashWrapperSdk private constructor(
 
     val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
     val searchRepository: UnsplashSearchRepository by lazy { UnsplashSearchRepositoryImpl.INSTANCE }
+
+    val auth: UnsplashAuth by lazy { UnsplashAuthImpl.INSTANCE }
 
 
     companion object {

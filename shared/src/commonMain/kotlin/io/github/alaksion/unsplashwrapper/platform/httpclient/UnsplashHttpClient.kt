@@ -1,8 +1,8 @@
 package io.github.alaksion.unsplashwrapper.platform.httpclient
 
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManager
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenManagerImplementation
-import io.github.alaksion.unsplashwrapper.platform.auth.TokenType
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.SerializationError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
