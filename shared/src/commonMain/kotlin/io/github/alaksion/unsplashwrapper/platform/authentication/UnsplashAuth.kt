@@ -64,7 +64,7 @@ internal class UnsplashAuthImpl private constructor(
             )
             append("redirect_uri", redirectUri)
             append("response_type", "code")
-            append("scope", scopes.joinToString(separator = "+"))
+            append("scope", scopes.joinToString(separator = "+") { it.value })
         }
         return url.buildString()
     }
