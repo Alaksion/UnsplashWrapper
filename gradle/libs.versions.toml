@@ -7,8 +7,6 @@ detekt = "1.23.3"
 androidxStartup = "1.1.1"
 vanniktech = "0.27.0"
 immutablecolletions = "0.3.7"
-compose-core = "1.5.11"
-compose-compiler = "1.4.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -26,16 +24,12 @@ ktx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json
 ktx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.5.0" }
 ktx-immutablecollections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "immutablecolletions" }
 
-#Compose
-compose-runtime = {module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-core"}
-
 #Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 
 #Androidx
 androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidxStartup" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -46,3 +40,4 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 vanniktech = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }
+compose = { id = "org.jetbrains.compose", version = "1.5.12" }

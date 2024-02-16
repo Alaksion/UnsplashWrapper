@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.detekt)
     alias(libs.plugins.vanniktech)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -43,7 +44,8 @@ kotlin {
             implementation(libs.ktx.datetime)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktx.immutablecollections)
-            implementation(libs.compose.runtime)
+            implementation(compose.runtime)
+            implementation(compose.ui)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -66,7 +68,7 @@ android {
         minSdk = 26
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+        kotlinCompilerExtensionVersion = "1.5.9"
     }
 }
 
