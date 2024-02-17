@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.currentuser.data.model
 
 
 import io.github.alaksion.unsplashwrapper.api.currentuser.domain.model.CurrentUser
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -47,7 +48,7 @@ internal fun CurrentUserResponse.toDomain(): CurrentUser = CurrentUser(
     totalLikes = this.totalLikes,
     totalPhotos = this.totalPhotos,
     twitterUsername = this.twitterUsername,
-    updatedAt = this.updatedAt,
+    updatedAt = InstantWrapper(this.updatedAt),
     uploadsRemaining = this.uploadsRemaining,
     username = this.username,
 )

@@ -1,6 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.authorization.data.repository
 
 import io.github.alaksion.unsplashwrapper.api.authorization.data.model.AuthorizationRequest
+import io.github.alaksion.unsplashwrapper.api.authorization.data.model.toDomain
 import io.github.alaksion.unsplashwrapper.api.authorization.data.remote.UnsplashAuthorizationRemoteDataSource
 import io.github.alaksion.unsplashwrapper.api.authorization.data.remote.UnsplashAuthorizationRemoteDataSourceImpl
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationResult

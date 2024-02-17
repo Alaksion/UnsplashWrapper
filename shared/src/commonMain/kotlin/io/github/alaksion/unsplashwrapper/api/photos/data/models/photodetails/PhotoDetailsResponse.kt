@@ -8,6 +8,7 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photod
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoPosition
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
@@ -38,28 +39,28 @@ internal data class PhotoDetailsResponse(
     val urls: PhotoUrlResponse,
     val links: PhotoLinksResponse,
     val user: PhotoDetailsUserResponse
-) {
-    fun toDomain(): PhotoDetails = PhotoDetails(
-        id = this.id,
-        createdAt = this.createdAt,
-        updatedAt = this.updatedAt,
-        width = this.width,
-        height = this.height,
-        color = this.color,
-        blurHash = this.blurHash,
-        downloads = this.downloads,
-        likes = this.likes,
-        likedByUser = this.likedByUser,
-        isPublicDomain = this.isPublicDomain,
-        description = this.description,
-        exif = this.exif.toDomain(),
-        location = this.location.toDomain(),
-        tags = this.tags.map { it.title }.toPersistentList(),
-        urls = this.urls.toDomain(),
-        links = this.links.toDomain(),
-        author = this.user.toDomain(),
-    )
-}
+)
+
+internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
+    id = this.id,
+    createdAt = InstantWrapper(this.createdAt),
+    updatedAt = InstantWrapper(this.updatedAt),
+    width = this.width,
+    height = this.height,
+    color = this.color,
+    blurHash = this.blurHash,
+    downloads = this.downloads,
+    likes = this.likes,
+    likedByUser = this.likedByUser,
+    isPublicDomain = this.isPublicDomain,
+    description = this.description,
+    exif = this.exif.toDomain(),
+    location = this.location.toDomain(),
+    tags = this.tags.map { it.title }.toPersistentList(),
+    urls = this.urls.toDomain(),
+    links = this.links.toDomain(),
+    author = this.user.toDomain(),
+)
 
 /*
 * Exif stands for Exchangeable image file format. This is an industry standard specification for
@@ -131,18 +132,18 @@ internal data class PhotoDetailsUserResponse(
     @SerialName("total_photos") val totalPhotos: Int,
     @SerialName("total_collections") val totalCollections: Int,
     val links: PhotoUserLinksResponse
-) {
-    fun toDomain(): Author = Author(
-        id = this.id,
-        updatedAt = this.updatedAt,
-        username = this.username,
-        name = this.name,
-        portfolioUrl = this.portfolioUrl,
-        bio = this.bio,
-        location = this.location,
-        totalLikes = this.totalLikes,
-        totalPhotos = this.totalPhotos,
-        totalCollections = this.totalCollections,
-        links = this.links.toDomain(),
-    )
-}
+)
+
+internal fun PhotoDetailsUserResponse.toDomain(): Author = Author(
+    id = this.id,
+    updatedAt = InstantWrapper(this.updatedAt),
+    username = this.username,
+    name = this.name,
+    portfolioUrl = this.portfolioUrl,
+    bio = this.bio,
+    location = this.location,
+    totalLikes = this.totalLikes,
+    totalPhotos = this.totalPhotos,
+    totalCollections = this.totalCollections,
+    links = this.links.toDomain(),
+)

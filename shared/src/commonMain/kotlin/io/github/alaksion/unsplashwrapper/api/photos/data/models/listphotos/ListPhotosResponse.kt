@@ -2,6 +2,8 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -44,4 +46,13 @@ internal data class ListPhotoCollectionsResponse(
     @Serializable(with = InstantIso8601Serializer::class)
     val updatedAt: Instant,
     @SerialName("cover_photo") val coverPhoto: String? = null
+)
+
+internal fun ListPhotoCollectionsResponse.toDomain() = ListPhotoCollections(
+    id = this.id,
+    title = this.title,
+    publishedAt = InstantWrapper(this.publishedAt),
+    lastCollectedAt = InstantWrapper(this.lastCollectedAt),
+    updatedAt = InstantWrapper(this.updatedAt),
+    coverPhoto = this.coverPhoto,
 )

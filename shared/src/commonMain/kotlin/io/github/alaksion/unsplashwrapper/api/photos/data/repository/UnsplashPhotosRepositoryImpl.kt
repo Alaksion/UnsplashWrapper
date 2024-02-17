@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.repository
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosMapper
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.toData
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.photodetails.toDomain
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSource
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSourceImpl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoOrderBy

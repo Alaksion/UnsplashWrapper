@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.authorization.data.model
 
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationResult
 import io.github.alaksion.unsplashwrapper.api.authorization.domain.model.AuthorizationScope
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
@@ -13,12 +14,12 @@ internal data class AuthorizationResponse(
     @SerialName("token_type") val tokenType: String,
     val scope: String,
     @SerialName("created_at") val createdAt: Long
-) {
-    fun toDomain(): AuthorizationResult = AuthorizationResult(
-        accessToken = this.token,
-        createdAt = Instant.fromEpochMilliseconds(this.createdAt),
-        scopes = this.scope.split(" ")
-            .map { AuthorizationScope.parseFromString(it) }
-            .toImmutableSet()
-    )
-}
+)
+
+internal fun AuthorizationResponse.toDomain() = AuthorizationResult(
+    accessToken = this.token,
+    createdAt = InstantWrapper(Instant.fromEpochMilliseconds(this.createdAt)),
+    scopes = this.scope.split(" ")
+        .map { AuthorizationScope.parseFromString(it) }
+        .toImmutableSet()
+)

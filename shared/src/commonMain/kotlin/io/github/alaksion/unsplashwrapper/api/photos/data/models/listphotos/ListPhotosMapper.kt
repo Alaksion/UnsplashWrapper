@@ -5,7 +5,7 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlRespons
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
+import kotlinx.collections.immutable.toPersistentList
 
 internal object ListPhotosMapper {
 
@@ -24,9 +24,8 @@ internal object ListPhotosMapper {
             user = ListPhotosUserMapper.map(response.user),
             urls = urlMapper(response.urls),
             links = linksMappers(response.links),
-            currentUserCollections = response.currentUserCollections.map {
-                collectionMapper(it)
-            },
+            currentUserCollections = response.currentUserCollections.map { it.toDomain() }
+                .toPersistentList(),
         )
     }
 
@@ -46,15 +45,4 @@ internal object ListPhotosMapper {
             download = response.download,
             downloadLocation = response.downloadLocation,
         )
-
-    private fun collectionMapper(response: ListPhotoCollectionsResponse): ListPhotoCollections =
-        ListPhotoCollections(
-            id = response.id,
-            title = response.title,
-            publishedAt = response.publishedAt,
-            lastCollectedAt = response.lastCollectedAt,
-            updatedAt = response.updatedAt,
-            coverPhoto = response.coverPhoto,
-        )
-
 }
