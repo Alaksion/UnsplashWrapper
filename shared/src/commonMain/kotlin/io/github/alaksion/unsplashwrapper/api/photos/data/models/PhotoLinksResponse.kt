@@ -10,11 +10,11 @@ internal data class PhotoLinksResponse(
     val html: String,
     val download: String,
     @SerialName("download_location") val downloadLocation: String,
-) {
-    fun toDomain(): PhotoLinks = PhotoLinks(
-        self = this.self,
-        html = this.html,
-        download = this.download,
-        downloadLocation = this.downloadLocation
-    )
-}
+)
+
+internal fun PhotoLinksResponse.toDomain(): PhotoLinks = PhotoLinks(
+    self = this.self,
+    html = this.html,
+    download = this.download,
+    downloadLocation = this.downloadLocation
+)

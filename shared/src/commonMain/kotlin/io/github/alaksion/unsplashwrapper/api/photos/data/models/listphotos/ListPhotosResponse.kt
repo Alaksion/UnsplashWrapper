@@ -2,8 +2,11 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos
 
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.toDomain
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -31,6 +34,26 @@ internal data class ListPhotosResponse(
     val links: PhotoLinksResponse,
     @SerialName("current_user_collections") val currentUserCollections: List<ListPhotoCollectionsResponse>
 )
+
+internal fun ListPhotosResponse.toDomain(): ListPhoto {
+    return ListPhoto(
+        id = this.id,
+        createdAt = InstantWrapper(this.createdAt),
+        updatedAt = InstantWrapper(this.updatedAt),
+        width = this.width,
+        height = this.height,
+        color = this.color,
+        blurHash = this.blurHash,
+        likes = this.likes,
+        likedByUser = this.likedByUser,
+        description = this.description,
+        user = ListPhotosUserMapper.map(this.user),
+        urls = this.urls.toDomain(),
+        links = this.links.toDomain(),
+        currentUserCollections = this.currentUserCollections.map { it.toDomain() }
+            .toPersistentList(),
+    )
+}
 
 @Serializable
 internal data class ListPhotoCollectionsResponse(

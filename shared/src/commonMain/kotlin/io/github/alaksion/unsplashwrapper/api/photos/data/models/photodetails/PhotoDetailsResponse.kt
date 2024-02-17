@@ -3,6 +3,7 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.models.photodetails
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.photouser.PhotoUserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.toDomain
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.Author
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif

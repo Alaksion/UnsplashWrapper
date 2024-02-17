@@ -4,12 +4,11 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoL
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.datetime.Instant
 
 data class ListPhoto(
     val id: String,
-    val createdAt: Instant,
-    val updatedAt: Instant,
+    val createdAt: InstantWrapper,
+    val updatedAt: InstantWrapper,
     val width: Int,
     val height: Int,
     val color: String,

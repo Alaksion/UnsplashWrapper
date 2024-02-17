@@ -4,6 +4,7 @@ import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.Search
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotos
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosItem
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchedPhotosLinks
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
@@ -42,7 +43,7 @@ internal data class SearchPhotosItemResponse(
 ) {
     fun toDomain(): SearchedPhotosItem = SearchedPhotosItem(
         id = this.id,
-        createdAt = this.createdAt,
+        createdAt = InstantWrapper(this.createdAt),
         width = this.width,
         height = this.height,
         color = this.color,

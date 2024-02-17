@@ -10,6 +10,8 @@ internal data class PhotoUrlResponse(
     val regular: String,
     val small: String,
     val thumb: String,
-) {
-    fun toDomain(): PhotoUrl = PhotoUrl(raw, full, regular, small, thumb)
-}
+)
+
+internal fun PhotoUrlResponse.toDomain(): PhotoUrl = PhotoUrl(raw, full, regular, small, thumb)
+
+

@@ -4,7 +4,6 @@ import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
 import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
-import io.github.alaksion.unsplashwrapper.platform.error.SerializationError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
 import io.github.alaksion.unsplashwrapper.platform.error.UnsplashRemoteError
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
@@ -19,6 +18,8 @@ import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.header
 import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
@@ -65,17 +66,13 @@ internal class UnsplashHttpClient private constructor(
 
                         throw HttpError(
                             statusCode = exceptionResponse.status.value,
-                            errors = parseBody
+                            errors = parseBody.toPersistentList()
                         )
                     }
 
-                    is SerializationException -> throw SerializationError(
-                        errors = listOf(cause.message.orEmpty())
-                    )
-
                     else -> throw Unknown(
                         cause = cause,
-                        errors = listOf(cause.message.orEmpty())
+                        errors = persistentListOf(cause.message.orEmpty())
                     )
                 }
             }
