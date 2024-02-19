@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.search.data.repository
 
+import io.github.alaksion.unsplashwrapper.api.search.data.models.photos.toDomain
 import io.github.alaksion.unsplashwrapper.api.search.data.remote.SearchRemoteDataSource
 import io.github.alaksion.unsplashwrapper.api.search.data.remote.SearchRemoteDataSourceImpl
 import io.github.alaksion.unsplashwrapper.api.search.domain.models.photos.SearchPhotosParameters

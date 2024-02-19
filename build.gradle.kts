@@ -6,6 +6,13 @@ plugins {
     alias(libs.plugins.compose).apply(false)
 }
 
+/*
+* run to print stability report:
+*
+* ./gradlew assembleRelease -PcomposeCompilerReports=true --rerun-tasks
+*
+* */
+
 subprojects {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {

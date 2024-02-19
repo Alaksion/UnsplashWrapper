@@ -5,6 +5,7 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlRespons
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.toDomain
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoCollections
+import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
@@ -42,7 +43,7 @@ internal fun ListPhotosResponse.toDomain(): ListPhoto {
         updatedAt = InstantWrapper(this.updatedAt),
         width = this.width,
         height = this.height,
-        color = this.color,
+        color = UnsplashColor(hex = this.color),
         blurHash = this.blurHash,
         likes = this.likes,
         likedByUser = this.likedByUser,

@@ -9,6 +9,7 @@ import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photod
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoPosition
+import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
@@ -48,7 +49,7 @@ internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
     updatedAt = InstantWrapper(this.updatedAt),
     width = this.width,
     height = this.height,
-    color = this.color,
+    color = UnsplashColor(hex = this.color),
     blurHash = this.blurHash,
     downloads = this.downloads,
     likes = this.likes,

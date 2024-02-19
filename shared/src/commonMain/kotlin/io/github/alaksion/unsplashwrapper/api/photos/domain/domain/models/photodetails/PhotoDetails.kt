@@ -3,6 +3,7 @@ package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photo
 
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
+import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.datetime.Instant
@@ -13,7 +14,7 @@ data class PhotoDetails(
     val updatedAt: InstantWrapper,
     val width: Int,
     val height: Int,
-    val color: String,
+    val color: UnsplashColor,
     val blurHash: String,
     val downloads: Int,
     val likes: Int,

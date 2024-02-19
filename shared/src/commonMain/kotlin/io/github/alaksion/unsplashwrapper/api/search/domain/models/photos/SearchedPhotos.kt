@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.search.domain.models.photos
 
+import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.datetime.Instant
@@ -15,7 +16,7 @@ data class SearchedPhotosItem(
     val createdAt: InstantWrapper,
     val width: Int,
     val height: Int,
-    val color: String,
+    val color: UnsplashColor,
     val blurHash: String,
     val likes: Int,
     val likedByUser: String,

@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listp
 
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLinks
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoUrl
+import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.ImmutableList
 
@@ -11,7 +12,7 @@ data class ListPhoto(
     val updatedAt: InstantWrapper,
     val width: Int,
     val height: Int,
-    val color: String,
+    val color: UnsplashColor,
     val blurHash: String,
     val likes: Int,
     val likedByUser: Boolean,
