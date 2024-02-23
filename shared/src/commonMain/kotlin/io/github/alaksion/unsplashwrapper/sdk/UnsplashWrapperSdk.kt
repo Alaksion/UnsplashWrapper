@@ -29,9 +29,7 @@ class UnsplashWrapperSdk private constructor(
 
     val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
     val searchRepository: UnsplashSearchRepository by lazy { UnsplashSearchRepositoryImpl.INSTANCE }
-    val currentUserRepository: UnsplashCurrentUserRepository by lazy {
-        UnsplashCurrentUserRepositoryImpl.INSTANCE
-    }
+    val currentUserRepository: UnsplashCurrentUserRepository by lazy { UnsplashCurrentUserRepositoryImpl.INSTANCE }
 
     val auth: UnsplashAuth by lazy { UnsplashAuthImpl.INSTANCE }
 

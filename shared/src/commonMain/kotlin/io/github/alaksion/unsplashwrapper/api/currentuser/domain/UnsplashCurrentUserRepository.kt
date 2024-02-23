@@ -5,4 +5,6 @@ import io.github.alaksion.unsplashwrapper.api.currentuser.domain.model.CurrentUs
 interface UnsplashCurrentUserRepository {
 
     suspend fun getCurrentUser(): CurrentUser
+
+    fun isUserLoggedIn(): Boolean
 }
