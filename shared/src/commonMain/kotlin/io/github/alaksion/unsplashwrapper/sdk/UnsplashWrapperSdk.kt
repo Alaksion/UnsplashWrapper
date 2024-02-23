@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.sdk
 
+import io.github.alaksion.unsplashwrapper.api.currentuser.data.repository.UnsplashCurrentUserRepositoryImpl
+import io.github.alaksion.unsplashwrapper.api.currentuser.domain.UnsplashCurrentUserRepository
 import io.github.alaksion.unsplashwrapper.api.photos.data.repository.UnsplashPhotosRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
 import io.github.alaksion.unsplashwrapper.api.search.data.repository.UnsplashSearchRepositoryImpl
@@ -27,6 +29,9 @@ class UnsplashWrapperSdk private constructor(
 
     val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
     val searchRepository: UnsplashSearchRepository by lazy { UnsplashSearchRepositoryImpl.INSTANCE }
+    val currentUserRepository: UnsplashCurrentUserRepository by lazy {
+        UnsplashCurrentUserRepositoryImpl.INSTANCE
+    }
 
     val auth: UnsplashAuth by lazy { UnsplashAuthImpl.INSTANCE }
 
