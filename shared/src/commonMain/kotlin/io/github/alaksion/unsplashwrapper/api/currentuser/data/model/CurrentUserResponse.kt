@@ -10,13 +10,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class CurrentUserResponse(
-    val bio: String,
+    val bio: String? = null,
     val downloads: Int,
-    val email: String,
+    val email: String? = null,
     @SerialName("first_name") val firstName: String,
     @SerialName("followed_by_user") val followedByUser: Boolean,
     val id: String,
-    @SerialName("instagram_username") val instagramUsername: String,
+    @SerialName("instagram_username") val instagramUsername: String? = null,
     @SerialName("last_name") val lastName: String,
     val links: Links,
     val location: String? = null,
@@ -25,10 +25,10 @@ internal data class CurrentUserResponse(
     @SerialName("total_likes") val totalLikes: Int,
     @SerialName("total_photos")
     val totalPhotos: Int,
-    @SerialName("twitter_username") val twitterUsername: String,
+    @SerialName("twitter_username") val twitterUsername: String? = null,
     @Serializable(with = InstantIso8601Serializer::class)
     @SerialName("updated_at") val updatedAt: Instant,
-    @SerialName("uploads_remaining") val uploadsRemaining: Int,
+    @SerialName("uploads_remaining") val uploadsRemaining: Int? = null,
     val username: String
 )
 
