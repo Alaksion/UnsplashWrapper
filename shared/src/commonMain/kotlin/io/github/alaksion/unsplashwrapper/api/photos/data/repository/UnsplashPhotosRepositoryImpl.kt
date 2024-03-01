@@ -7,7 +7,8 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDat
 import io.github.alaksion.unsplashwrapper.api.photos.data.remote.PhotosRemoteDataSourceImpl
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.listphotos.ListPhotoOrderBy
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoDetails
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.RatePhoto
 import io.github.alaksion.unsplashwrapper.api.photos.domain.repository.UnsplashPhotosRepository
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
@@ -29,6 +30,14 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
 
     override suspend fun getPhotoDetails(id: String): PhotoDetails =
         photosRemoteDataSource.photoDetails(id).toDomain()
+
+    override suspend fun likePhoto(photoId: String): RatePhoto {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun unlikePhoto(photoId: String): RatePhoto {
+        TODO("Not yet implemented")
+    }
 
     companion object {
         val INSTANCE = UnsplashPhotosRepositoryImpl(

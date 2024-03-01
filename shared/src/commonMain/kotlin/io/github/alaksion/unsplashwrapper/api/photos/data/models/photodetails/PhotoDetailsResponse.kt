@@ -4,11 +4,12 @@ import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoLinksRespo
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.photouser.PhotoUserLinksResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.toDomain
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.Author
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoDetails
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoExif
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoLocation
-import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.photodetails.PhotoPosition
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoAuthor
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoExif
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoLocation
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoPosition
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoTag
+import io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models.PhotoDetails
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
@@ -58,7 +59,7 @@ internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
     description = this.description,
     exif = this.exif.toDomain(),
     location = this.location.toDomain(),
-    tags = this.tags.map { it.title }.toPersistentList(),
+    tags = this.tags.map { PhotoTag(it.title) }.toPersistentList(),
     urls = this.urls.toDomain(),
     links = this.links.toDomain(),
     author = this.user.toDomain(),
@@ -136,7 +137,7 @@ internal data class PhotoDetailsUserResponse(
     val links: PhotoUserLinksResponse
 )
 
-internal fun PhotoDetailsUserResponse.toDomain(): Author = Author(
+internal fun PhotoDetailsUserResponse.toDomain(): PhotoAuthor = PhotoAuthor(
     id = this.id,
     updatedAt = InstantWrapper(this.updatedAt),
     username = this.username,
