@@ -1,5 +1,3 @@
 package io.github.alaksion.unsplashwrapper.platform.color
 
-data class UnsplashColor(
-    val hex: String
-)
+expect class UnsplashColor(hex: String)
