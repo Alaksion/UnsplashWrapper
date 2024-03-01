@@ -19,7 +19,7 @@ data class PhotoAuthor(
 data class PhotoAuthorLinks(
     val self: String,
     val html: String,
-    val portfolio: String,
+    val portfolio: String?,
     val photos: String,
     val likes: String,
 )

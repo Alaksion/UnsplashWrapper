@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 internal data class PhotoUserLinksResponse(
     val self: String,
     val html: String,
-    val portfolio: String,
+    val portfolio: String? = null,
     val photos: String,
     val likes: String,
 ) {

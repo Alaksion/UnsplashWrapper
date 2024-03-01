@@ -1,24 +1,26 @@
 package io.github.alaksion.unsplashwrapper.api.photos.domain.domain.models
 
-import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
-
 data class RatePhoto(
-    val id: String,
-    val createdAt: InstantWrapper,
-    val updatedAt: InstantWrapper,
-    val width: Int,
-    val height: Int,
-    val color: String,
+    val ratedPhotoSummary: PhotoSummary,
+    val ratedPhotoAuthor: AuthorSummary
+)
+
+data class PhotoSummary(
     val blurHash: String,
-    val download: Int,
-    val likes: Int,
-    val likedByUser: Boolean,
-    val publicDomain: Boolean,
+    val color: String,
     val description: String,
-    val exif: PhotoExif,
-    val location: PhotoLocation,
-    val tags: PhotoTag,
-    val urls: PhotoUrl,
+    val height: Int,
+    val id: String,
+    val likedByUser: Boolean,
+    val likes: Int,
     val links: PhotoLinks,
-    val author: PhotoAuthor
+    val urls: PhotoUrl,
+    val width: Int
+)
+
+data class AuthorSummary(
+    val id: String,
+    val links: PhotoAuthorLinks,
+    val name: String,
+    val username: String
 )

@@ -4,5 +4,5 @@ data class PhotoLinks(
     val self: String,
     val html: String,
     val download: String,
-    val downloadLocation: String,
+    val downloadLocation: String?,
 )

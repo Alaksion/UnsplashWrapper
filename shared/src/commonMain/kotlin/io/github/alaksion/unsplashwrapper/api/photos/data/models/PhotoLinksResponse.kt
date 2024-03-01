@@ -9,7 +9,7 @@ internal data class PhotoLinksResponse(
     val self: String,
     val html: String,
     val download: String,
-    @SerialName("download_location") val downloadLocation: String,
+    @SerialName("download_location") val downloadLocation: String? = null,
 )
 
 internal fun PhotoLinksResponse.toDomain(): PhotoLinks = PhotoLinks(

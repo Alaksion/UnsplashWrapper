@@ -3,12 +3,14 @@ package io.github.alaksion.unsplashwrapper.api.photos.data.remote
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosOrderByRequest
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.listphotos.ListPhotosResponse
 import io.github.alaksion.unsplashwrapper.api.photos.data.models.photodetails.PhotoDetailsResponse
+import io.github.alaksion.unsplashwrapper.api.photos.data.models.ratephoto.RatePhotoResponse
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.call.body
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import kotlinx.collections.immutable.ImmutableList
+import io.ktor.client.request.post
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -24,6 +26,14 @@ internal interface PhotosRemoteDataSource {
     suspend fun photoDetails(
         photoId: String
     ): PhotoDetailsResponse
+
+    suspend fun likePhoto(
+        photoId: String
+    ): RatePhotoResponse
+
+    suspend fun unlikePhoto(
+        photoId: String
+    ): RatePhotoResponse
 }
 
 internal class PhotosRemoteDataSourceImpl private constructor(
@@ -55,6 +65,20 @@ internal class PhotosRemoteDataSourceImpl private constructor(
                     urlString = UnsplashSdkConfig.buildUrl("photos/$photoId")
                 ).body()
         }
+    }
+
+    override suspend fun likePhoto(photoId: String): RatePhotoResponse = withContext(dispatcher) {
+        httpClient.client
+            .post(
+                urlString = UnsplashSdkConfig.buildUrl("photos/$photoId/like")
+            ).body()
+    }
+
+    override suspend fun unlikePhoto(photoId: String): RatePhotoResponse = withContext(dispatcher) {
+        httpClient.client
+            .delete(
+                urlString = UnsplashSdkConfig.buildUrl("photos/$photoId/like")
+            ).body()
     }
 
     companion object {
