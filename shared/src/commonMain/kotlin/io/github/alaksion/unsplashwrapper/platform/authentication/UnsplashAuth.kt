@@ -1,12 +1,12 @@
 package io.github.alaksion.unsplashwrapper.platform.authentication
 
-import io.github.alaksion.unsplashwrapper.api.authorization.data.repository.UnsplashAuthorizationRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.models.authorization.domain.AuthorizationScope
 import io.github.alaksion.unsplashwrapper.api.models.authorization.domain.AuthorizeDTO
-import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashAuthorizationRepository
-import io.github.alaksion.unsplashwrapper.api.currentuser.data.repository.UnsplashCurrentUserRepositoryImpl
-import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashCurrentUserRepository
 import io.github.alaksion.unsplashwrapper.api.models.currentuser.domain.CurrentUser
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashAuthorizationRepository
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashAuthorizationRepositoryImpl
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashCurrentUserRepository
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashCurrentUserRepositoryImpl
 import io.github.alaksion.unsplashwrapper.platform.error.basicError
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
