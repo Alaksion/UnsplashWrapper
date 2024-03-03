@@ -16,6 +16,18 @@ internal interface SearchRemoteDataSource {
     suspend fun searchPhotos(
         parametersRequest: SearchPhotosParameters
     ): SearchPhotosResponse
+
+    suspend fun searchUsers(
+        query: String,
+        perPage: Int,
+        page: Int
+    )
+
+    suspend fun searchCollections(
+        query: String,
+        perPage: Int,
+        page: Int
+    )
 }
 
 internal class SearchRemoteDataSourceImpl private constructor(
@@ -42,6 +54,14 @@ internal class SearchRemoteDataSourceImpl private constructor(
                     }
                 }.body()
         }
+
+    override suspend fun searchUsers(query: String, perPage: Int, page: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun searchCollections(query: String, perPage: Int, page: Int) {
+        TODO("Not yet implemented")
+    }
 
     companion object {
         val INSTANCE: SearchRemoteDataSource = SearchRemoteDataSourceImpl(
