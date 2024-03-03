@@ -1,8 +1,9 @@
 package io.github.alaksion.unsplashwrapper.api.datasources
 
+import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoDownloadTrackResponse
+import io.github.alaksion.unsplashwrapper.api.models.photo.data.details.PhotoDetailsResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosOrderByRequest
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosResponse
-import io.github.alaksion.unsplashwrapper.api.models.photo.data.details.PhotoDetailsResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.ratephoto.RatePhotoResponse
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
@@ -34,6 +35,10 @@ internal interface PhotosRemoteDataSource {
     suspend fun unlikePhoto(
         photoId: String
     ): RatePhotoResponse
+
+    suspend fun trackPhotoDownload(
+        photoId: String
+    ): PhotoDownloadTrackResponse
 }
 
 internal class PhotosRemoteDataSourceImpl private constructor(
@@ -80,6 +85,14 @@ internal class PhotosRemoteDataSourceImpl private constructor(
                 urlString = UnsplashSdkConfig.buildUrl("photos/$photoId/like")
             ).body()
     }
+
+    override suspend fun trackPhotoDownload(photoId: String): PhotoDownloadTrackResponse =
+        withContext(dispatcher) {
+            httpClient.client
+                .get(
+                    urlString = UnsplashSdkConfig.buildUrl("photos/$photoId/download")
+                ).body()
+        }
 
     companion object {
         val Instance: PhotosRemoteDataSource = PhotosRemoteDataSourceImpl(

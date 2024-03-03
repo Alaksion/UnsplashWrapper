@@ -32,6 +32,10 @@ interface UnsplashPhotosRepository {
     suspend fun unlikePhoto(
         photoId: String
     ): RatePhoto
+
+    suspend fun trackPhotoDownload(
+        photoId: String
+    ): String
 }
 
 internal class UnsplashPhotosRepositoryImpl private constructor(
@@ -57,6 +61,9 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
 
     override suspend fun unlikePhoto(photoId: String): RatePhoto =
         photosRemoteDataSource.unlikePhoto(photoId).toDomain()
+
+    override suspend fun trackPhotoDownload(photoId: String): String =
+        photosRemoteDataSource.trackPhotoDownload(photoId).url
 
     companion object {
         val INSTANCE = UnsplashPhotosRepositoryImpl(
