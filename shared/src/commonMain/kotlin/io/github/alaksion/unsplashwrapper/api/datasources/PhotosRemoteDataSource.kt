@@ -44,7 +44,7 @@ internal interface PhotosRemoteDataSource {
 
     suspend fun getPhotoStatistics(
         photoId: String,
-        resolutionResponse: PhotoStatisticsResolutionResponse,
+        resolution: PhotoStatisticsResolutionResponse,
         quantity: Int
     ): PhotoStatisticsResponse
 }

@@ -6,10 +6,13 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.data.details.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.toData
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.ratephoto.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.photo.data.statistics.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.details.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhotoOrderBy
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.rate.RatePhoto
+import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatistics
+import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatisticsResolution
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -36,6 +39,12 @@ interface UnsplashPhotosRepository {
     suspend fun trackPhotoDownload(
         photoId: String
     ): String
+
+    suspend fun getPhotoStatistics(
+        photoId: String,
+        resolution: PhotoStatisticsResolution,
+        quantity: Int
+    ): PhotoStatistics
 }
 
 internal class UnsplashPhotosRepositoryImpl private constructor(
@@ -65,6 +74,15 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
     override suspend fun trackPhotoDownload(photoId: String): String =
         photosRemoteDataSource.trackPhotoDownload(photoId).url
 
+    override suspend fun getPhotoStatistics(
+        photoId: String,
+        resolution: PhotoStatisticsResolution,
+        quantity: Int
+    ): PhotoStatistics = photosRemoteDataSource.getPhotoStatistics(
+        photoId = photoId,
+        resolution = resolution.toData(),
+        quantity = quantity
+    ).toDomain()
     companion object {
         val INSTANCE = UnsplashPhotosRepositoryImpl(
             photosRemoteDataSource = PhotosRemoteDataSourceImpl.Instance
