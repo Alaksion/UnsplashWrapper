@@ -3,7 +3,7 @@ package io.github.alaksion.unsplashwrapper.api.models.collections.data
 import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCollectionItem
 import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCollections
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorResponse
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant

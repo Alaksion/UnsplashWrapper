@@ -1,7 +1,7 @@
-package io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain
+package io.github.alaksion.unsplashwrapper.api.models.user.domain
 
 
-data class PhotoAuthorLinks(
+data class UserLinks(
     val self: String,
     val html: String,
     val photos: String,

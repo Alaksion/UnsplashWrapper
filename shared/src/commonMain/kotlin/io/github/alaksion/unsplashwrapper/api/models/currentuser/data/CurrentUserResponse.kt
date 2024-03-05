@@ -2,9 +2,8 @@ package io.github.alaksion.unsplashwrapper.api.models.currentuser.data
 
 
 import io.github.alaksion.unsplashwrapper.api.models.currentuser.domain.CurrentUser
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorLinksResponse
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain.PhotoAuthorLinks
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
@@ -21,7 +20,7 @@ internal data class CurrentUserResponse(
     val id: String,
     @SerialName("instagram_username") val instagramUsername: String? = null,
     @SerialName("last_name") val lastName: String,
-    val currentUserLinksResponse: PhotoAuthorLinksResponse,
+    val currentUserLinksResponse: UserLinksResponse,
     val location: String? = null,
     @SerialName("portfolio_url") val portfolioUrl: String? = null,
     @SerialName("total_collections") val totalCollections: Int,

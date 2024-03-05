@@ -1,6 +1,9 @@
 package io.github.alaksion.unsplashwrapper.api.models.photoauthor.data
 
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain.PhotoAuthor
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserProfilePictureResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -17,8 +20,8 @@ internal data class PhotoAuthorResponse(
     @SerialName("total_collections") val totalCollections: Int,
     @SerialName("instagram_username") val instagramUserName: String? = null,
     @SerialName("twitter_username") val twitterUsername: String? = null,
-    @SerialName("profile_image") val profileImage: PhotoAuthorProfilePictureResponse,
-    val links: PhotoAuthorLinksResponse,
+    @SerialName("profile_image") val profileImage: UserProfilePictureResponse,
+    val links: UserLinksResponse,
 )
 
 internal fun PhotoAuthorResponse.toDomain(): PhotoAuthor = PhotoAuthor(

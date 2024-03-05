@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain
 
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserLinks
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 
 data class PhotoDetailsAuthor(
@@ -13,5 +14,5 @@ data class PhotoDetailsAuthor(
     val totalLikes: Int,
     val totalPhotos: Int,
     val totalCollections: Int,
-    val links: PhotoAuthorLinks
+    val links: UserLinks
 )

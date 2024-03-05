@@ -1,14 +1,14 @@
 package io.github.alaksion.unsplashwrapper.api.models.photo.data.ratephoto
 
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.rate.AuthorSummary
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorLinksResponse
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SummarizedUserResponse(
     val id: String,
-    val links: PhotoAuthorLinksResponse,
+    val links: UserLinksResponse,
     val name: String,
     val username: String
 )

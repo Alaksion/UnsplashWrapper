@@ -1,5 +1,8 @@
 package io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain
 
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserLinks
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserProfilePicture
+
 
 data class PhotoAuthor(
     val id: String,
@@ -13,6 +16,6 @@ data class PhotoAuthor(
     val totalCollections: Int,
     val instagramUserName: String? = null,
     val twitterUsername: String? = null,
-    val profileImage: PhotoAuthorProfilePicture,
-    val links: PhotoAuthorLinks,
+    val profileImage: UserProfilePicture,
+    val links: UserLinks,
 )

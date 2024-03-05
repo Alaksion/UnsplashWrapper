@@ -7,6 +7,8 @@ import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCo
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.search.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.search.SearchPhotos
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.search.SearchPhotosParameters
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.SearchUser
 
 public interface UnsplashSearchRepository {
 
@@ -19,6 +21,12 @@ public interface UnsplashSearchRepository {
         perPage: Int,
         query: String
     ): SearchCollections
+
+    suspend fun searchUsers(
+        page: Int,
+        perPage: Int,
+        query: String
+    ): SearchUser
 
 }
 
@@ -38,6 +46,13 @@ internal class UnsplashSearchRepositoryImpl private constructor(
         page = page,
         perPage = perPage
     ).toDomain()
+
+    override suspend fun searchUsers(page: Int, perPage: Int, query: String): SearchUser =
+        searchRemoteDataSource.searchUsers(
+            query = query,
+            page = page,
+            perPage = perPage
+        ).toDomain()
 
     companion object {
         val INSTANCE: UnsplashSearchRepository = UnsplashSearchRepositoryImpl(

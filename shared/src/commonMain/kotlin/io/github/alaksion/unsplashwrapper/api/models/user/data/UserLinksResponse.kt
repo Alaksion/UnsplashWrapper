@@ -1,10 +1,10 @@
-package io.github.alaksion.unsplashwrapper.api.models.photoauthor.data
+package io.github.alaksion.unsplashwrapper.api.models.user.data
 
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain.PhotoAuthorLinks
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserLinks
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class PhotoAuthorLinksResponse(
+internal data class UserLinksResponse(
     val self: String,
     val html: String,
     val photos: String,
@@ -12,7 +12,7 @@ internal data class PhotoAuthorLinksResponse(
     val portfolio: String? = null,
 )
 
-internal fun PhotoAuthorLinksResponse.toDomain() = PhotoAuthorLinks(
+internal fun UserLinksResponse.toDomain() = UserLinks(
     self = this.self,
     html = this.html,
     photos = this.photos,

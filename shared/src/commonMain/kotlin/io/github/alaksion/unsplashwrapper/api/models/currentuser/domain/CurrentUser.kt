@@ -1,6 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.models.currentuser.domain
 
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain.PhotoAuthorLinks
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserLinks
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 
 data class CurrentUser(
@@ -12,7 +12,7 @@ data class CurrentUser(
     val id: String,
     val instagramUsername: String?,
     val lastName: String,
-    val currentUserLinksResponse: PhotoAuthorLinks,
+    val currentUserLinksResponse: UserLinks,
     val location: String?,
     val portfolioUrl: String?,
     val totalCollections: Int,

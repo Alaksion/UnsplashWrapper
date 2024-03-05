@@ -3,6 +3,7 @@ package io.github.alaksion.unsplashwrapper.api.datasources
 import io.github.alaksion.unsplashwrapper.api.models.collections.data.SearchCollectionResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.search.SearchPhotosResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.search.SearchPhotosParameters
+import io.github.alaksion.unsplashwrapper.api.models.user.data.SearchUserResponse
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.call.body
@@ -22,7 +23,7 @@ internal interface SearchRemoteDataSource {
         query: String,
         perPage: Int,
         page: Int
-    )
+    ): SearchUserResponse
 
     suspend fun searchCollections(
         query: String,
@@ -56,9 +57,21 @@ internal class SearchRemoteDataSourceImpl private constructor(
                 }.body()
         }
 
-    override suspend fun searchUsers(query: String, perPage: Int, page: Int) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun searchUsers(
+        query: String,
+        perPage: Int,
+        page: Int
+    ): SearchUserResponse =
+        withContext(dispatcher) {
+            httpClient.client.get(
+                urlString = UnsplashSdkConfig.buildUrl("search/users"),
+                block = {
+                    parameter("page", page)
+                    parameter("per_page", perPage)
+                    parameter("query", query)
+                }
+            ).body()
+        }
 
     override suspend fun searchCollections(
         query: String,

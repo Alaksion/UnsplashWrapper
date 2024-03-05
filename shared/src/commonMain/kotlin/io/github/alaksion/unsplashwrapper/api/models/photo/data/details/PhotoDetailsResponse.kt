@@ -9,7 +9,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoPosition
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoTag
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.details.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoDetailsAuthorResponse
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList

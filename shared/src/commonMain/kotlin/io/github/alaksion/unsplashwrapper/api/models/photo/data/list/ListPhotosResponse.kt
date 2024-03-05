@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.models.photo.data.list
 
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorResponse
-import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.toDomain
