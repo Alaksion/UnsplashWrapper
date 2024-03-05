@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.datasources
 
+import io.github.alaksion.unsplashwrapper.api.models.collections.data.SearchCollectionResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.search.SearchPhotosResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.search.SearchPhotosParameters
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
@@ -27,7 +28,7 @@ internal interface SearchRemoteDataSource {
         query: String,
         perPage: Int,
         page: Int
-    )
+    ): SearchCollectionResponse
 }
 
 internal class SearchRemoteDataSourceImpl private constructor(
@@ -39,7 +40,7 @@ internal class SearchRemoteDataSourceImpl private constructor(
         withContext(dispatcher) {
             httpClient.client
                 .get(
-                    urlString = UnsplashSdkConfig.buildUrl("photos")
+                    urlString = UnsplashSdkConfig.buildUrl("search/photos")
                 ) {
                     parameter("query", parametersRequest.query)
                     parameter("page", parametersRequest.page)
@@ -59,9 +60,21 @@ internal class SearchRemoteDataSourceImpl private constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun searchCollections(query: String, perPage: Int, page: Int) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun searchCollections(
+        query: String,
+        perPage: Int,
+        page: Int
+    ): SearchCollectionResponse =
+        withContext(dispatcher) {
+            httpClient.client.get(
+                urlString = UnsplashSdkConfig.buildUrl("search/collections"),
+                block = {
+                    parameter("page", page)
+                    parameter("per_page", perPage)
+                    parameter("query", query)
+                }
+            ).body()
+        }
 
     companion object {
         val INSTANCE: SearchRemoteDataSource = SearchRemoteDataSourceImpl(
