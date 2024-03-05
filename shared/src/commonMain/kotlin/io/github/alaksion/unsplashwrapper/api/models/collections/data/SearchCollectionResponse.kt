@@ -1,6 +1,11 @@
 package io.github.alaksion.unsplashwrapper.api.models.collections.data
 
+import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCollectionItem
+import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCollections
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorResponse
+import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -12,6 +17,12 @@ internal data class SearchCollectionResponse(
     @SerialName("total_pages")
     val totalPages: Int,
     val results: List<SearchCollectionItemResponse>
+)
+
+internal fun SearchCollectionResponse.toDomain(): SearchCollections = SearchCollections(
+    total = this.total,
+    totalPages = this.totalPages,
+    results = this.results.map { it.toDomain() }.toPersistentList()
 )
 
 @Serializable
@@ -33,4 +44,20 @@ internal data class SearchCollectionItemResponse(
     @SerialName("cover_photo") val coverPhotoResponse: CollectionCoverPhotoResponse,
     val user: PhotoAuthorResponse,
     val links: CollectionLinksResponse
+)
+
+internal fun SearchCollectionItemResponse.toDomain(): SearchCollectionItem = SearchCollectionItem(
+    id = this.id,
+    title = this.title,
+    description = this.description,
+    publishedAt = InstantWrapper(this.publishedAt),
+    lastCollectedAt = InstantWrapper(this.lastCollectedAt),
+    updatedAt = InstantWrapper(this.updatedAt),
+    featured = this.featured,
+    totalPhotos = this.totalPhotos,
+    private = this.private,
+    shareKey = this.shareKey,
+    coverPhotoResponse = this.coverPhotoResponse.toDomain(),
+    user = this.user.toDomain(),
+    links = this.links.toDomain(),
 )
