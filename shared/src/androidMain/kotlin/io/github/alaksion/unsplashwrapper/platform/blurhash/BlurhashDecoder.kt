@@ -12,7 +12,7 @@ import kotlin.math.withSign
 * Implementation found here: https://github.com/woltapp/blurhash/blob/master/Kotlin/lib/src/main/java/com/wolt/blurhashkt/BlurHashDecoder.kt
 * */
 
-actual class BlurhashDecoder {
+actual object BlurhashDecoder {
 
     // cache Math.cos() calculations to improve performance.
     // The number of calculations can be huge for many bitmaps: width * height * numCompX * numCompY * 2 * nBitmaps
@@ -38,13 +38,13 @@ actual class BlurhashDecoder {
      *                 By default it is true.
      */
     actual fun decode(
-        blurHash: String?,
+        blurHash: String,
         width: Int,
         height: Int,
         punch: Float,
         useCache: Boolean
     ): Blurhash {
-        if (blurHash == null || blurHash.length < 6) {
+        if (blurHash.length < 6) {
             return Blurhash(null)
         }
         val numCompEnc = decode83(blurHash, 0, 1)

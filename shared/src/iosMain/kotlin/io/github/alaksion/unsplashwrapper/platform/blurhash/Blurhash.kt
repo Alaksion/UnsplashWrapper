@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.platform.blurhash
 
+import platform.UIKit.UIImage
+
 actual data class Blurhash(
-    val teste: String
+    val image: UIImage?
 )

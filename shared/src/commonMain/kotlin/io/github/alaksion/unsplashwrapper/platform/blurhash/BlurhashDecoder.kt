@@ -1,9 +1,9 @@
 package io.github.alaksion.unsplashwrapper.platform.blurhash
 
-expect class BlurhashDecoder() {
+expect object BlurhashDecoder {
 
     fun decode(
-        blurHash: String?,
+        blurHash: String,
         width: Int = 200,
         height: Int = 200,
         punch: Float = 1f,
