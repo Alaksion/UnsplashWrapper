@@ -11,6 +11,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.domain.details.PhotoD
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoDetailsAuthorResponse
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
+import io.github.alaksion.unsplashwrapper.platform.blurhash.BlurhashDecoder
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
@@ -52,7 +53,7 @@ internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
     width = this.width,
     height = this.height,
     color = UnsplashColor(hex = this.color),
-    blurHash = this.blurHash,
+    blurHash = BlurhashDecoder().decode(this.blurHash),
     downloads = this.downloads,
     likes = this.likes,
     likedByUser = this.likedByUser,

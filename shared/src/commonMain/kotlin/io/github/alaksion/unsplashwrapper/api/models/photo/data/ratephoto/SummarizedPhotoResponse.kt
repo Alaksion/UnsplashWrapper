@@ -5,6 +5,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoLinksRespon
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoUrlResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.rate.PhotoSummary
+import io.github.alaksion.unsplashwrapper.platform.blurhash.BlurhashDecoder
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -23,7 +24,7 @@ internal data class SummarizedPhotoResponse(
 )
 
 internal fun SummarizedPhotoResponse.toDomain(): PhotoSummary = PhotoSummary(
-    blurHash = this.blurHash,
+    blurHash = BlurhashDecoder().decode(this.blurHash),
     color = this.color,
     description = this.description,
     height = this.height,

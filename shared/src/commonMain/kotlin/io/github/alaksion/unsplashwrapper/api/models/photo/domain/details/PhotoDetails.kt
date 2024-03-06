@@ -7,6 +7,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoLocation
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoTag
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoUrls
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.domain.PhotoDetailsAuthor
+import io.github.alaksion.unsplashwrapper.platform.blurhash.Blurhash
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.ImmutableList
@@ -18,7 +19,7 @@ data class PhotoDetails(
     val width: Int,
     val height: Int,
     val color: UnsplashColor,
-    val blurHash: String,
+    val blurHash: Blurhash,
     val downloads: Int,
     val likes: Int,
     val likedByUser: Boolean,

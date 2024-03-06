@@ -4,9 +4,12 @@ import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAutho
 import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoLinksResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.PhotoUrlResponse
+import io.github.alaksion.unsplashwrapper.api.models.photo.data.details.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhotoCollections
+import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.platform.blurhash.BlurhashDecoder
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
@@ -46,7 +49,7 @@ internal fun ListPhotosResponse.toDomain(): ListPhoto {
         width = this.width,
         height = this.height,
         color = UnsplashColor(hex = this.color),
-        blurHash = this.blurHash,
+        blurHash = BlurhashDecoder().decode(this.blurHash),
         likes = this.likes,
         likedByUser = this.likedByUser,
         description = this.description,
