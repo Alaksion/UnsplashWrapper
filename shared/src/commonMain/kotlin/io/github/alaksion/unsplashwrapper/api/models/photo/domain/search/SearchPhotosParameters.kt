@@ -1,5 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.models.photo.domain.search
 
+import io.github.alaksion.unsplashwrapper.api.models.parameters.PhotoOrientation
+
 public data class SearchPhotosParameters(
     val query: String,
     val page: Int = 0,
@@ -7,7 +9,7 @@ public data class SearchPhotosParameters(
     val orderBy: SearchPhotosOrderBy = SearchPhotosOrderBy.Relevant,
     val contentFilter: SearchPhotosContentFilter = SearchPhotosContentFilter.Low,
     val color: SearchPhotosColor? = null,
-    val orientation: SearchPhotosOrientation? = null
+    val orientation: PhotoOrientation? = null
 
 )
 
@@ -41,10 +43,3 @@ public enum class SearchPhotosColor(
     Blue("blue");
 }
 
-public enum class SearchPhotosOrientation(
-    internal val primitiveValue: String,
-) {
-    Landscape("landscape"),
-    Portrait("portrait"),
-    Squarish("squarish");
-}
