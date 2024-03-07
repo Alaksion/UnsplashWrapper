@@ -22,15 +22,5 @@ data class ListPhoto(
     val user: PhotoAuthor,
     val urls: PhotoUrls,
     val links: PhotoLinks,
-    val currentUserCollections: ImmutableList<ListPhotoCollections>
-)
-
-data class ListPhotoCollections(
-    val id: Int,
-    val title: String,
-    val publishedAt: InstantWrapper,
-    val lastCollectedAt: InstantWrapper,
-    val updatedAt: InstantWrapper,
-    val coverPhoto: String? = null
 )
 
