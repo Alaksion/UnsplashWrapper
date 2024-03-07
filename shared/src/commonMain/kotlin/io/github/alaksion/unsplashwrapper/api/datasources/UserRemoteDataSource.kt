@@ -43,6 +43,12 @@ internal interface UserRemoteDataSource {
         quantity: Int,
     ): UserStatisticsResponse
 
+    suspend fun getUserCollections(
+        username: String,
+        perPage: Int,
+        page: Int
+    )
+
 }
 
 internal class UserRemoteDataSourceImplementation private constructor(
@@ -113,6 +119,10 @@ internal class UserRemoteDataSourceImplementation private constructor(
                 }
             ).body()
         }
+
+    override suspend fun getUserCollections(username: String, perPage: Int, page: Int) {
+        TODO("Not yet implemented")
+    }
 
     companion object {
         val INSTANCE: UserRemoteDataSource = UserRemoteDataSourceImplementation(
