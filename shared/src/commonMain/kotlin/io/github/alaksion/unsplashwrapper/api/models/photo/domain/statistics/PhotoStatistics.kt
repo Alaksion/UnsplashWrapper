@@ -1,6 +1,7 @@
 package io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics
 
-import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
+import io.github.alaksion.unsplashwrapper.api.models.statistics.domain.StatisticsResolution
+import io.github.alaksion.unsplashwrapper.api.models.statistics.domain.StatisticsValue
 import kotlinx.collections.immutable.ImmutableList
 
 data class PhotoStatistics(
@@ -17,12 +18,7 @@ data class PhotoStatisticsItem(
 
 data class PhotoStatisticsHistorical(
     val change: Int,
-    val resolution: PhotoStatisticsResolution,
+    val resolution: StatisticsResolution,
     val quantity: Int,
-    val values: ImmutableList<PhotoStatisticsValue>
-)
-
-data class PhotoStatisticsValue(
-    val date: InstantWrapper,
-    val value: Int
+    val values: ImmutableList<StatisticsValue>
 )

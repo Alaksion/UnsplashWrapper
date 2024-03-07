@@ -1,6 +1,8 @@
-package io.github.alaksion.unsplashwrapper.api.models.user.data
+package io.github.alaksion.unsplashwrapper.api.models.user.data.profile
 
 
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserLinksResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserProfilePictureResponse
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName

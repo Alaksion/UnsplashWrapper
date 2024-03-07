@@ -5,7 +5,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.data.details.PhotoDet
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosOrderByRequest
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.ratephoto.RatePhotoResponse
-import io.github.alaksion.unsplashwrapper.api.models.photo.data.statistics.PhotoStatisticsResolutionResponse
+import io.github.alaksion.unsplashwrapper.api.models.statistics.data.StatisticsResolutionResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.statistics.PhotoStatisticsResponse
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
@@ -44,7 +44,7 @@ internal interface PhotosRemoteDataSource {
 
     suspend fun getPhotoStatistics(
         photoId: String,
-        resolution: PhotoStatisticsResolutionResponse,
+        resolution: StatisticsResolutionResponse,
         quantity: Int
     ): PhotoStatisticsResponse
 }
@@ -104,7 +104,7 @@ internal class PhotosRemoteDataSourceImpl private constructor(
 
     override suspend fun getPhotoStatistics(
         photoId: String,
-        resolutionResponse: PhotoStatisticsResolutionResponse,
+        resolutionResponse: StatisticsResolutionResponse,
         quantity: Int
     ): PhotoStatisticsResponse = withContext(dispatcher) {
         httpClient.client

@@ -1,4 +1,4 @@
-package io.github.alaksion.unsplashwrapper.api.models.user.data
+package io.github.alaksion.unsplashwrapper.api.models.user.data.profile
 
 
 import kotlinx.serialization.SerialName

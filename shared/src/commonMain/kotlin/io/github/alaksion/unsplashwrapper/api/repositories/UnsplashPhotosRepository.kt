@@ -12,7 +12,7 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhoto
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.list.ListPhotoOrderBy
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.rate.RatePhoto
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatistics
-import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatisticsResolution
+import io.github.alaksion.unsplashwrapper.api.models.statistics.domain.StatisticsResolution
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
@@ -42,7 +42,7 @@ interface UnsplashPhotosRepository {
 
     suspend fun getPhotoStatistics(
         photoId: String,
-        resolution: PhotoStatisticsResolution,
+        resolution: StatisticsResolution,
         quantity: Int
     ): PhotoStatistics
 }
@@ -76,7 +76,7 @@ internal class UnsplashPhotosRepositoryImpl private constructor(
 
     override suspend fun getPhotoStatistics(
         photoId: String,
-        resolution: PhotoStatisticsResolution,
+        resolution: StatisticsResolution,
         quantity: Int
     ): PhotoStatistics = photosRemoteDataSource.getPhotoStatistics(
         photoId = photoId,

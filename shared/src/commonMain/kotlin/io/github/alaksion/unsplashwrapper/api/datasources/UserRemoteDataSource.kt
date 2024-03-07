@@ -1,8 +1,10 @@
 package io.github.alaksion.unsplashwrapper.api.datasources
 
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosResponse
+import io.github.alaksion.unsplashwrapper.api.models.statistics.data.StatisticsResolutionResponse
 import io.github.alaksion.unsplashwrapper.api.models.user.data.UserPortfolioLinkResponse
-import io.github.alaksion.unsplashwrapper.api.models.user.data.UserProfileResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.UserStatisticsResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.profile.UserProfileResponse
 import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserLikedPhotosParameters
 import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserPhotosParameters
 import io.github.alaksion.unsplashwrapper.platform.httpclient.UnsplashHttpClient
@@ -34,6 +36,12 @@ internal interface UserRemoteDataSource {
     suspend fun getUserPortfolioLink(
         username: String
     ): UserPortfolioLinkResponse
+
+    suspend fun getUserStatistics(
+        username: String,
+        resolution: StatisticsResolutionResponse,
+        quantity: Int,
+    ): UserStatisticsResponse
 
 }
 
@@ -88,6 +96,21 @@ internal class UserRemoteDataSourceImplementation private constructor(
         withContext(dispatcher) {
             client.client.get(
                 urlString = UnsplashSdkConfig.buildUrl("/users/{$username}/portfolio"),
+            ).body()
+        }
+
+    override suspend fun getUserStatistics(
+        username: String,
+        resolution: StatisticsResolutionResponse,
+        quantity: Int
+    ): UserStatisticsResponse =
+        withContext(dispatcher) {
+            client.client.get(
+                urlString = UnsplashSdkConfig.buildUrl("/users/{$username}/statistics"),
+                block = {
+                    parameter("resolution", resolution.value)
+                    parameter("quantity", quantity)
+                }
             ).body()
         }
 

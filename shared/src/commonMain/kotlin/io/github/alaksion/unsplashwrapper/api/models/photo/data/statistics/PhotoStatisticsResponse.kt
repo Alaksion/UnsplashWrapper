@@ -3,11 +3,10 @@ package io.github.alaksion.unsplashwrapper.api.models.photo.data.statistics
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatistics
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatisticsHistorical
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatisticsItem
-import io.github.alaksion.unsplashwrapper.api.models.photo.domain.statistics.PhotoStatisticsValue
-import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
+import io.github.alaksion.unsplashwrapper.api.models.statistics.data.StatisticsResolutionResponse
+import io.github.alaksion.unsplashwrapper.api.models.statistics.data.StatisticsValueResponse
+import io.github.alaksion.unsplashwrapper.api.models.statistics.data.toDomain
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.datetime.Instant
-import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -39,9 +38,9 @@ internal fun PhotoStatisticsItemResponse.toDomain(): PhotoStatisticsItem = Photo
 @Serializable
 internal data class PhotoStatisticsHistoricalResponse(
     val change: Int,
-    val resolution: PhotoStatisticsResolutionResponse,
+    val resolution: StatisticsResolutionResponse,
     val quantity: Int,
-    val values: List<PhotoStatisticsValueResponse>
+    val values: List<StatisticsValueResponse>
 )
 
 internal fun PhotoStatisticsHistoricalResponse.toDomain(): PhotoStatisticsHistorical =
@@ -51,15 +50,3 @@ internal fun PhotoStatisticsHistoricalResponse.toDomain(): PhotoStatisticsHistor
         quantity = this.quantity,
         values = this.values.map { it.toDomain() }.toPersistentList()
     )
-
-@Serializable
-internal data class PhotoStatisticsValueResponse(
-    @Serializable(with = InstantIso8601Serializer::class)
-    val date: Instant,
-    val value: Int
-)
-
-internal fun PhotoStatisticsValueResponse.toDomain(): PhotoStatisticsValue = PhotoStatisticsValue(
-    date = InstantWrapper(this.date),
-    value = this.value
-)
