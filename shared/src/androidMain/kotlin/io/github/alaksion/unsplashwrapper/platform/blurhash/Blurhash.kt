@@ -1,7 +1,7 @@
 package io.github.alaksion.unsplashwrapper.platform.blurhash
 
-import android.graphics.Bitmap
+import io.github.alaksion.unsplashwrapper.wrappers.BitmapWrapper
 
 actual data class Blurhash(
-    val bitmap: Bitmap?
+    val bitmap: BitmapWrapper
 )

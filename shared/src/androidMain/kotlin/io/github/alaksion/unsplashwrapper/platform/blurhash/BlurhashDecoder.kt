@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.platform.blurhash
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import io.github.alaksion.unsplashwrapper.wrappers.BitmapWrapper
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.withSign
@@ -45,13 +46,13 @@ actual object BlurhashDecoder {
         useCache: Boolean
     ): Blurhash {
         if (blurHash.length < 6) {
-            return Blurhash(null)
+            return Blurhash(BitmapWrapper(null))
         }
         val numCompEnc = decode83(blurHash, 0, 1)
         val numCompX = (numCompEnc % 9) + 1
         val numCompY = (numCompEnc / 9) + 1
         if (blurHash.length != 4 + 2 * numCompX * numCompY) {
-            return Blurhash(null)
+            return Blurhash(BitmapWrapper(null))
         }
         val maxAcEnc = decode83(blurHash, 1, 2)
         val maxAc = (maxAcEnc + 1) / 166f
@@ -65,7 +66,18 @@ actual object BlurhashDecoder {
                 decodeAc(colorEnc, maxAc * punch)
             }
         }
-        return Blurhash(composeBitmap(width, height, numCompX, numCompY, colors, useCache))
+        return Blurhash(
+            BitmapWrapper(
+                composeBitmap(
+                    width,
+                    height,
+                    numCompX,
+                    numCompY,
+                    colors,
+                    useCache
+                )
+            )
+        )
     }
 
     private fun decode83(str: String, from: Int = 0, to: Int = str.length): Int {
