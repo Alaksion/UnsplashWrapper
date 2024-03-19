@@ -24,7 +24,7 @@ internal data class SummarizedPhotoResponse(
 )
 
 internal fun SummarizedPhotoResponse.toDomain(): PhotoSummary = PhotoSummary(
-    blurHash = BlurhashDecoder().decode(this.blurHash),
+    blurHash = BlurhashDecoder.decode(this.blurHash),
     color = this.color,
     description = this.description,
     height = this.height,

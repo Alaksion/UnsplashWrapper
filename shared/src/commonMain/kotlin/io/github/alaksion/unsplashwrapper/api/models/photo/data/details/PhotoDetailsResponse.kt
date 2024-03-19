@@ -53,7 +53,7 @@ internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
     width = this.width,
     height = this.height,
     color = UnsplashColor(hex = this.color),
-    blurHash = BlurhashDecoder().decode(this.blurHash),
+    blurHash = BlurhashDecoder.decode(this.blurHash),
     downloads = this.downloads,
     likes = this.likes,
     likedByUser = this.likedByUser,

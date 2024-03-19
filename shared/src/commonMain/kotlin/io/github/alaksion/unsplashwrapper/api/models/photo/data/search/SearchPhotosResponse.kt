@@ -53,7 +53,7 @@ internal fun SearchPhotosItemResponse.toDomain(): SearchPhotosItem = SearchPhoto
     width = this.width,
     height = this.height,
     color = UnsplashColor(hex = this.color),
-    blurHash = BlurhashDecoder().decode(this.blurHash),
+    blurHash = BlurhashDecoder.decode(this.blurHash),
     likes = this.likes,
     likedByUser = this.likedByUser,
     description = this.description,
