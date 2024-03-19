@@ -14,6 +14,7 @@ import platform.UIKit.UIColor
 * Copy & pasted from here: https://stackoverflow.com/questions/62703813/hex-color-function-for-ios-in-kotlin-multiplatform
 * */
 
+@Suppress("All")
 actual data class UnsplashColor actual constructor(
     val hex: String
 ) {

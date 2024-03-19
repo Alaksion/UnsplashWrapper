@@ -13,6 +13,7 @@ import kotlin.math.withSign
 * Implementation found here: https://github.com/woltapp/blurhash/blob/master/Kotlin/lib/src/main/java/com/wolt/blurhashkt/BlurHashDecoder.kt
 * */
 
+@Suppress("All")
 actual object BlurhashDecoder {
 
     // cache Math.cos() calculations to improve performance.

@@ -1,7 +1,7 @@
+@file:Suppress("All")
 package io.github.alaksion.unsplashwrapper.platform.blurhash
 
 import platform.posix.pow
-
 
 actual object BlurhashDecoder {
 
