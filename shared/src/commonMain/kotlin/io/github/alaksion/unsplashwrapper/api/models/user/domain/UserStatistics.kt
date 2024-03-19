@@ -2,6 +2,7 @@ package io.github.alaksion.unsplashwrapper.api.models.user.domain
 
 import io.github.alaksion.unsplashwrapper.api.models.statistics.domain.StatisticsResolution
 import io.github.alaksion.unsplashwrapper.api.models.statistics.domain.StatisticsValue
+import kotlinx.collections.immutable.ImmutableList
 
 data class UserStatistics(
     val username: String,
@@ -19,5 +20,5 @@ data class UserStatisticsItemHistorical(
     val average: Int,
     val resolution: StatisticsResolution,
     val quantity: Int,
-    val values: List<StatisticsValue>
+    val values: ImmutableList<StatisticsValue>
 )

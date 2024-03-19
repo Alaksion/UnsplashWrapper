@@ -6,6 +6,7 @@ import io.github.alaksion.unsplashwrapper.api.models.statistics.data.toDomain
 import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserStatistics
 import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserStatisticsItem
 import io.github.alaksion.unsplashwrapper.api.models.user.domain.UserStatisticsItemHistorical
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -47,5 +48,5 @@ internal fun UserStatisticsItemHistoricalResponse.toDomain(): UserStatisticsItem
         average = this.average,
         resolution = this.resolution.toDomain(),
         quantity = this.quantity,
-        values = this.values.map { it.toDomain() }
+        values = this.values.map { it.toDomain() }.toPersistentList()
     )

@@ -3,6 +3,7 @@ package io.github.alaksion.unsplashwrapper.api.models.collections.data
 import io.github.alaksion.unsplashwrapper.api.models.collections.domain.UserCollections
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorResponse
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -31,9 +32,9 @@ internal fun UserCollectionsResponse.toDomain(): UserCollections = UserCollectio
     id = id,
     title = this.title,
     description = this.description,
-    publishedAt = this.publishedAt,
-    lastCollectedAt = this.lastCollectedAt,
-    updatedAt = this.updatedAt,
+    publishedAt = InstantWrapper(this.publishedAt),
+    lastCollectedAt = InstantWrapper(this.lastCollectedAt),
+    updatedAt = InstantWrapper(this.updatedAt),
     totalPhotos = this.totalPhotos,
     private = this.private,
     coverPhoto = this.coverPhotoResponse.toDomain(),
