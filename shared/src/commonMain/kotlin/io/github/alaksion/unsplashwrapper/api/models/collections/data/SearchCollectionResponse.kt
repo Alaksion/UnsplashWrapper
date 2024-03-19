@@ -4,7 +4,6 @@ import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCo
 import io.github.alaksion.unsplashwrapper.api.models.collections.domain.SearchCollections
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoAuthorResponse
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
-import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.Instant
@@ -38,11 +37,10 @@ internal data class SearchCollectionItemResponse(
     @Serializable(with = InstantIso8601Serializer::class)
     @SerialName("updated_at") val updatedAt: Instant,
     val featured: Boolean,
-    @SerialName("total_photos")
-    val totalPhotos: Int,
+    @SerialName("total_photos") val totalPhotos: Int,
     val private: Boolean,
     @SerialName("share_key") val shareKey: String,
-    @SerialName("cover_photo") val coverPhotoResponse: CollectionCoverPhotoResponse,
+    @SerialName("cover_photo") val coverPhoto: CollectionCoverPhotoResponse,
     val user: PhotoAuthorResponse,
     val links: CollectionLinksResponse
 )
@@ -58,7 +56,7 @@ internal fun SearchCollectionItemResponse.toDomain(): SearchCollectionItem = Sea
     totalPhotos = this.totalPhotos,
     private = this.private,
     shareKey = this.shareKey,
-    coverPhotoResponse = this.coverPhotoResponse.toDomain(),
+    coverPhotoResponse = this.coverPhoto.toDomain(),
     user = this.user.toDomain(),
     links = this.links.toDomain(),
 )

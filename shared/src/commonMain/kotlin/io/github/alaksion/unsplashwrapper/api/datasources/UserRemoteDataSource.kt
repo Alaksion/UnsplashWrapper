@@ -1,5 +1,6 @@
 package io.github.alaksion.unsplashwrapper.api.datasources
 
+import io.github.alaksion.unsplashwrapper.api.models.collections.data.UserCollectionsResponse
 import io.github.alaksion.unsplashwrapper.api.models.photo.data.list.ListPhotosResponse
 import io.github.alaksion.unsplashwrapper.api.models.statistics.data.StatisticsResolutionResponse
 import io.github.alaksion.unsplashwrapper.api.models.user.data.UserPortfolioLinkResponse
@@ -47,7 +48,7 @@ internal interface UserRemoteDataSource {
         username: String,
         perPage: Int,
         page: Int
-    )
+    ): List<UserCollectionsResponse>
 
 }
 
@@ -120,9 +121,20 @@ internal class UserRemoteDataSourceImplementation private constructor(
             ).body()
         }
 
-    override suspend fun getUserCollections(username: String, perPage: Int, page: Int) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getUserCollections(
+        username: String,
+        perPage: Int,
+        page: Int
+    ): List<UserCollectionsResponse> =
+        withContext(dispatcher) {
+            client.client.get(
+                urlString = UnsplashSdkConfig.buildUrl("/users/{$username}/collections"),
+                block = {
+                    parameter("page", page)
+                    parameter("per_page", perPage)
+                }
+            ).body()
+        }
 
     companion object {
         val INSTANCE: UserRemoteDataSource = UserRemoteDataSourceImplementation(
