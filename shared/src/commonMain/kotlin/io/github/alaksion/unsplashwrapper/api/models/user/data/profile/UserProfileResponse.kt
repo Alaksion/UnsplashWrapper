@@ -3,6 +3,9 @@ package io.github.alaksion.unsplashwrapper.api.models.user.data.profile
 
 import io.github.alaksion.unsplashwrapper.api.models.user.data.UserLinksResponse
 import io.github.alaksion.unsplashwrapper.api.models.user.data.UserProfilePictureResponse
+import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
+import io.github.alaksion.unsplashwrapper.api.models.user.domain.profile.UserProfile
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
 import kotlinx.datetime.Instant
 import kotlinx.datetime.serializers.InstantIso8601Serializer
 import kotlinx.serialization.SerialName
@@ -34,4 +37,26 @@ internal data class UserProfileResponse(
     @Serializable(with = InstantIso8601Serializer::class)
     @SerialName("updated_at") val updatedAt: Instant,
     val username: String
+)
+
+internal fun UserProfileResponse.toDomain(): UserProfile = UserProfile(
+    badge = this.badge.toDomain(),
+    bio = this.bio,
+    downloads = this.downloads,
+    firstName = this.firstName,
+    followedByUser = this.followedByUser,
+    followersCount = this.followersCount,
+    followingCount = this.followingCount,
+    id = this.id,
+    lastName = this.lastName,
+    links = this.links.toDomain(),
+    location = this.location,
+    name = this.name,
+    profileImage = this.profileImage.toDomain(),
+    social = this.social.toDomain(),
+    totalCollections = this.totalCollections,
+    totalLikes = this.totalLikes,
+    totalPhotos = this.totalPhotos,
+    updatedAt = InstantWrapper(this.updatedAt),
+    username = this.username,
 )

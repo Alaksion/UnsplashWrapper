@@ -6,6 +6,8 @@ import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashPhotosReposit
 import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashPhotosRepositoryImpl
 import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashSearchRepository
 import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashSearchRepositoryImpl
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashUserRepository
+import io.github.alaksion.unsplashwrapper.api.repositories.UnsplashUserRepositoryImpl
 import io.github.alaksion.unsplashwrapper.platform.authentication.UnsplashAuth
 import io.github.alaksion.unsplashwrapper.platform.authentication.UnsplashAuthImpl
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
@@ -30,6 +32,7 @@ class UnsplashWrapperSdk private constructor(
     val photosRepository: UnsplashPhotosRepository by lazy { UnsplashPhotosRepositoryImpl.INSTANCE }
     val searchRepository: UnsplashSearchRepository by lazy { UnsplashSearchRepositoryImpl.INSTANCE }
     val currentUserRepository: UnsplashCurrentUserRepository by lazy { UnsplashCurrentUserRepositoryImpl.INSTANCE }
+    val userRepository: UnsplashUserRepository by lazy { UnsplashUserRepositoryImpl.INSTANCE }
 
     val auth: UnsplashAuth by lazy { UnsplashAuthImpl.INSTANCE }
 
