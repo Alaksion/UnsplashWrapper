@@ -20,7 +20,7 @@ internal data class CurrentUserResponse(
     val id: String,
     @SerialName("instagram_username") val instagramUsername: String? = null,
     @SerialName("last_name") val lastName: String,
-    val currentUserLinksResponse: UserLinksResponse,
+    val links: UserLinksResponse,
     val location: String? = null,
     @SerialName("portfolio_url") val portfolioUrl: String? = null,
     @SerialName("total_collections") val totalCollections: Int,
