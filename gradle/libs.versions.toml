@@ -5,7 +5,7 @@ ktor = "2.3.7"
 coroutines = "1.7.3"
 detekt = "1.23.3"
 androidxStartup = "1.1.1"
-vanniktech = "0.27.0"
+vanniktech = "0.28.0"
 immutablecolletions = "0.3.7"
 
 [libraries]

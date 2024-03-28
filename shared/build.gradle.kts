@@ -1,4 +1,5 @@
 import buildlogic.BuildSettings
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -84,6 +85,9 @@ detekt {
 }
 
 mavenPublishing {
+    publishToMavenCentral(SonatypeHost.S01)
+    signAllPublications()
+
     coordinates(
         groupId = BuildSettings.GROUP,
         version = BuildSettings.VERSION,
@@ -93,10 +97,12 @@ mavenPublishing {
         name = "unsplash-wrapper"
         description =
             "Wrapper SDK of the Unsplash public API. https://unsplash.com/documentation#creating-a-developer-account"
+        url = "https://github.com/Alaksion/UnsplashWrapper"
         licenses {
-            licenses {
+            license {
                 name = "MIT License"
                 url = "https://opensource.org/license/mit/"
+                distribution = "https://opensource.org/license/mit/"
             }
         }
         developers {
