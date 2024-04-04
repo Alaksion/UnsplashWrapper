@@ -22,7 +22,7 @@ data class SearchPhotosItem(
     val color: UnsplashColor,
     val blurHash: Blurhash,
     val likes: Int,
-    val likedByUser: String,
+    val likedByUser: Boolean,
     val description: String,
     val user: PhotoAuthor,
     val urls: PhotoUrls,

@@ -40,7 +40,7 @@ internal data class SearchPhotosItemResponse(
     val color: String,
     @SerialName("blur_hash") val blurHash: String,
     val likes: Int,
-    @SerialName("liked_by_user") val likedByUser: String,
+    @SerialName("liked_by_user") val likedByUser: Boolean,
     val description: String? = null,
     val user: PhotoAuthorResponse,
     val urlResponse: PhotoUrlResponse,
