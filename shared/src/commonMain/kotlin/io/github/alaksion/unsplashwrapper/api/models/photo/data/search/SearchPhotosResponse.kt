@@ -41,7 +41,7 @@ internal data class SearchPhotosItemResponse(
     @SerialName("blur_hash") val blurHash: String,
     val likes: Int,
     @SerialName("liked_by_user") val likedByUser: String,
-    val description: String,
+    val description: String? = null,
     val user: PhotoAuthorResponse,
     val urlResponse: PhotoUrlResponse,
     val links: PhotoLinksResponse
@@ -56,7 +56,7 @@ internal fun SearchPhotosItemResponse.toDomain(): SearchPhotosItem = SearchPhoto
     blurHash = BlurhashDecoder.decode(this.blurHash),
     likes = this.likes,
     likedByUser = this.likedByUser,
-    description = this.description,
+    description = this.description.orEmpty(),
     user = this.user.toDomain(),
     urls = this.urlResponse.toDomain(),
     links = this.links.toDomain(),
