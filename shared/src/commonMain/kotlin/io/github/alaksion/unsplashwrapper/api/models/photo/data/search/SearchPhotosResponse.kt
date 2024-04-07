@@ -43,7 +43,7 @@ internal data class SearchPhotosItemResponse(
     @SerialName("liked_by_user") val likedByUser: Boolean,
     val description: String? = null,
     val user: PhotoAuthorResponse,
-    val urlResponse: PhotoUrlResponse,
+    val urls: PhotoUrlResponse,
     val links: PhotoLinksResponse
 )
 
@@ -58,7 +58,7 @@ internal fun SearchPhotosItemResponse.toDomain(): SearchPhotosItem = SearchPhoto
     likedByUser = this.likedByUser,
     description = this.description.orEmpty(),
     user = this.user.toDomain(),
-    urls = this.urlResponse.toDomain(),
+    urls = this.urls.toDomain(),
     links = this.links.toDomain(),
 )
 
