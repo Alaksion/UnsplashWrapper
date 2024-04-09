@@ -15,6 +15,16 @@ jobs:
           java-version: 17
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
+      - name: Write Secrets
+        uses: "DamianReeves/write-file-action@master"
+        with:
+          path: ./gradle.propertis
+          write-mode: append
+          contents: |
+            echo "mavenCentralUsername=${{ secrets.MAVENCENTRALPASSWORD }}"
+            echo "mavenCentralPassword=${{ secrets.MAVENCENTRALUSERNAME }}"
+            echo "signing.keyId=${{ secrets.SIGNINGKEYID }}"
+            echo "signing.password=${{ secrets.SIGNINPASSWORD }}"
       - name: Publish to Maven Central
         run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
 
