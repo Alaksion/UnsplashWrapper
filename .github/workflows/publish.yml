@@ -16,11 +16,11 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
         
-      - name: Read README.md
+      - name: Read Gradle Properties
         id: package
         uses: jaywcjlove/github-action-read-file@main
         with:
-          path: ./gradle.properties
+          path: gradle.properties
       - name: Echo properties
         run: echo "${{ steps.package.outputs.content }}"
         
