@@ -8,6 +8,11 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@4
+        with:
+          distribution: 'zulu'
+          java-version: 8
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
       - name: Publish to Maven Central
