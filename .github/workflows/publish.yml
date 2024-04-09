@@ -16,15 +16,12 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
       - name: Write Secrets
-        uses: "DamianReeves/write-file-action@master"
-        with:
-          path: ./gradle.propertis
-          write-mode: append
-          contents: |
-            echo "mavenCentralUsername=${{ secrets.MAVENCENTRALPASSWORD }}"
-            echo "mavenCentralPassword=${{ secrets.MAVENCENTRALUSERNAME }}"
-            echo "signing.keyId=${{ secrets.SIGNINGKEYID }}"
-            echo "signing.password=${{ secrets.SIGNINPASSWORD }}"
+        run: |
+            echo "mavenCentralUsername=${{ secrets.MAVENCENTRALPASSWORD }}" >> gradle.properties
+            echo "mavenCentralPassword=${{ secrets.MAVENCENTRALUSERNAME }}" >> gradle.properties
+            echo "signing.keyId=${{ secrets.SIGNINGKEYID }}" >> gradle.properties
+            echo "signing.password=${{ secrets.SIGNINPASSWORD }}" >> gradle.properties
+      
       - name: Read Gradle Properties
         id: package
         uses: jaywcjlove/github-action-read-file@main
