@@ -15,6 +15,15 @@ jobs:
           java-version: 17
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
+        
+      - name: Read README.md
+        id: package
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          path: ./gradle.properties
+      - name: Echo properties
+        run: echo "${{ steps.package.outputs.content }}"
+        
       - name: Write Secrets
         uses: "DamianReeves/write-file-action@master"
         with:
