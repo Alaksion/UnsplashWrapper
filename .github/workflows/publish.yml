@@ -15,21 +15,5 @@ jobs:
           java-version: 17
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
-      - name: Write Secrets
-        run: |
-            echo "mavenCentralUsername=${{ secrets.MAVENCENTRALPASSWORD }}" >> gradle.properties
-            echo "mavenCentralPassword=${{ secrets.MAVENCENTRALUSERNAME }}" >> gradle.properties
-            echo "signing.keyId=${{ secrets.SIGNINGKEYID }}" >> gradle.properties
-            echo "signing.password=${{ secrets.SIGNINPASSWORD }}" >> gradle.properties
-      
-      - name: Read Gradle Properties
-        id: package
-        uses: jaywcjlove/github-action-read-file@main
-        with:
-          path: gradle.properties
-      - name: Echo properties
-        run: echo "${{ steps.package.outputs.content }}"
-      # - name: Publish to Maven Central
-      #   run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
-
-  
+      - name: Publish to Maven Central
+        run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
