@@ -86,7 +86,7 @@ detekt {
 
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.S01)
-//    signAllPublications()
+    signAllPublications()
 
     coordinates(
         groupId = BuildSettings.GROUP,
