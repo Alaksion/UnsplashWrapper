@@ -2,30 +2,30 @@ package io.github.alaksion.unsplashwrapper.platform.color
 
 import androidx.compose.ui.graphics.Color
 
+private const val RADIX = 16
+
 data class UnsplashColor(
     val hex: String
 ) {
     val composeColor: Color = try {
         Color(parseColor(hex))
-    } catch (e: Throwable) {
+    } catch (e: NumberFormatException) {
         Color.White
     }
 }
 
+@Suppress("MagicNumber")
 private fun parseColor(hexString: String): Int {
     require(hexString.isNotEmpty())
+    require(hexString[0] == '#')
 
-    if (hexString[0] != '#') {
-        throw IllegalArgumentException("Invalid ehx string")
-    }
     // Use a long to avoid rollovers on #ffXXXXXX
-    var color = hexString.substring(1).toLong(16)
+    var color = hexString.substring(1).toLong(RADIX)
     if (hexString.length == 7) {
         // Set the alpha value
         color = color or 0x00000000ff000000L
-    } else if (hexString.length != 9) {
-        throw IllegalArgumentException("Unknown color")
     }
+    require(hexString.length == 9)
     return color.toInt()
 
 }
