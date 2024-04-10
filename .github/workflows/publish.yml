@@ -17,3 +17,5 @@ jobs:
         uses: gradle/gradle-build-action@v3
       - name: Publish to Maven Central
         run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVENCENTRALUSERNAME }}
