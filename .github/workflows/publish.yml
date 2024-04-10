@@ -16,7 +16,7 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v3
       - name: Publish to Maven Central
-        run: ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVENCENTRALUSERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVENCENTRALPASSWORD }}
