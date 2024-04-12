@@ -20,7 +20,7 @@ jobs:
       - name: Build project
         run: ./gradlew assemble
       - name: Publish to Maven Central
-        run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache --scan
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVENCENTRALUSERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVENCENTRALPASSWORD }}
