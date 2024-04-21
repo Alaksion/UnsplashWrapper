@@ -1,7 +1,5 @@
 package io.github.alaksion.unsplashwrapper.platform.listeners
 
-import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
-
 
 interface HttpListener {
 
@@ -13,7 +11,7 @@ data class HttpResponse(
     val code: Int,
     val body: String,
     val headers: List<HttpHeader>,
-    val timeStamp: InstantWrapper
+    val timeStamp: String
 )
 
 data class HttpHeader(
