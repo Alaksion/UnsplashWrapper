@@ -4,12 +4,13 @@ import androidx.compose.ui.graphics.Color
 
 private const val RADIX = 16
 
+@Suppress("MagicNumber")
 data class UnsplashColor(
     val hex: String
 ) {
     val composeColor: Color = try {
         Color(parseColor(hex))
-    } catch (e: NumberFormatException) {
+    } catch (e: Exception) {
         Color.White
     }
 }
