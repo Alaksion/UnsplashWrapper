@@ -1,11 +1,14 @@
 package io.github.alaksion.unsplashwrapper.platform.httpclient
 
-import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
-import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
-import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
 import io.github.alaksion.unsplashwrapper.platform.error.UnsplashRemoteError
+import io.github.alaksion.unsplashwrapper.platform.listeners.HttpResponse
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.token.TokenType
+import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
+import io.github.alaksion.unsplashwrapper.sdk.SdkListeners
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.ClientRequestException
@@ -20,13 +23,13 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.serialization.SerializationException
+import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 
 internal class UnsplashHttpClient private constructor(
     private val tokenManager: TokenManager
 ) {
-    val client = HttpClient() {
+    val client = HttpClient {
         install(DefaultRequest) {
             tokenManager.getToken(TokenType.UserToken)?.let { userToken ->
                 bearerAuth(userToken)
@@ -51,6 +54,7 @@ internal class UnsplashHttpClient private constructor(
             )
         }
         HttpResponseValidator {
+            // Parse Errors
             handleResponseExceptionWithRequest { cause, _ ->
                 when (cause) {
                     is ClientRequestException -> {
@@ -76,7 +80,20 @@ internal class UnsplashHttpClient private constructor(
                     )
                 }
             }
+
+            // Listen to Http Responses
+            validateResponse { response ->
+                SdkListeners.httpListener?.onReceive(
+                    httpResponse = HttpResponse(
+                        code = response.status.value,
+                        timeStamp = InstantWrapper(Clock.System.now()),
+                        headers = persistentListOf(),
+                        body = response.bodyAsText()
+                    )
+                )
+            }
         }
+
     }
 
     companion object {
