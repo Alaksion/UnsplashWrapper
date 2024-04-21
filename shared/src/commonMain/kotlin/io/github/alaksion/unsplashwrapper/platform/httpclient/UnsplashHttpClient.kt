@@ -3,6 +3,7 @@ package io.github.alaksion.unsplashwrapper.platform.httpclient
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
 import io.github.alaksion.unsplashwrapper.platform.error.UnsplashRemoteError
+import io.github.alaksion.unsplashwrapper.platform.listeners.HttpHeader
 import io.github.alaksion.unsplashwrapper.platform.listeners.HttpResponse
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
 import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
@@ -87,7 +88,16 @@ internal class UnsplashHttpClient private constructor(
                     httpResponse = HttpResponse(
                         code = response.status.value,
                         timeStamp = InstantWrapper(Clock.System.now()),
-                        headers = persistentListOf(),
+                        headers = mutableListOf<HttpHeader>().apply {
+                            response.headers.forEach { name, body ->
+                                add(
+                                    HttpHeader(
+                                        name = name,
+                                        value = body.joinToString { " " }
+                                    )
+                                )
+                            }
+                        },
                         body = response.bodyAsText()
                     )
                 )
