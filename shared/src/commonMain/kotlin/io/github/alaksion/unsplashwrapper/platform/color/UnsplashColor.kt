@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 private const val RADIX = 16
 
-@Suppress("MagicNumber")
+@Suppress("MagicNumber", "SwallowedException", "TooGenericExceptionCaught")
 data class UnsplashColor(
     val hex: String
 ) {
