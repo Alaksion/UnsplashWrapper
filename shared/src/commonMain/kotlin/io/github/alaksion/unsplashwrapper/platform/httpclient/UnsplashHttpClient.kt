@@ -99,7 +99,8 @@ internal class UnsplashHttpClient private constructor(
                                 )
                             }
                         },
-                        body = "Not available"
+                        body = "Not yet avaialble",
+                        url = response.call.request.url.toString()
                     )
                 )
             }
