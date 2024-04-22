@@ -11,6 +11,7 @@ import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.sdk.SdkListeners
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpResponseValidator
@@ -99,7 +100,7 @@ internal class UnsplashHttpClient private constructor(
                                 )
                             }
                         },
-                        body = "Not yet avaialble",
+                        body = response.bodyAsText(),
                         url = response.call.request.url.toString()
                     )
                 )
