@@ -1,32 +1,37 @@
 package io.github.alaksion.unsplashwrapper.platform.httpclient
 
-import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
-import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
-import io.github.alaksion.unsplashwrapper.platform.token.TokenType
 import io.github.alaksion.unsplashwrapper.platform.error.HttpError
 import io.github.alaksion.unsplashwrapper.platform.error.Unknown
 import io.github.alaksion.unsplashwrapper.platform.error.UnsplashRemoteError
+import io.github.alaksion.unsplashwrapper.platform.listeners.HttpHeader
+import io.github.alaksion.unsplashwrapper.platform.listeners.HttpResponse
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManager
+import io.github.alaksion.unsplashwrapper.platform.token.TokenManagerImplementation
+import io.github.alaksion.unsplashwrapper.platform.token.TokenType
+import io.github.alaksion.unsplashwrapper.sdk.SdkListeners
 import io.github.alaksion.unsplashwrapper.sdk.UnsplashSdkConfig
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.header
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.toHttpDate
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
 internal class UnsplashHttpClient private constructor(
     private val tokenManager: TokenManager
 ) {
-    val client = HttpClient() {
+    val client = HttpClient {
         install(DefaultRequest) {
             tokenManager.getToken(TokenType.UserToken)?.let { userToken ->
                 bearerAuth(userToken)
@@ -51,6 +56,7 @@ internal class UnsplashHttpClient private constructor(
             )
         }
         HttpResponseValidator {
+            // Parse Errors
             handleResponseExceptionWithRequest { cause, _ ->
                 when (cause) {
                     is ClientRequestException -> {
@@ -75,6 +81,29 @@ internal class UnsplashHttpClient private constructor(
                         errors = persistentListOf(cause.message.orEmpty())
                     )
                 }
+            }
+        }
+
+        install(ResponseObserver) {
+            onResponse { response ->
+                SdkListeners.httpListener?.onReceive(
+                    httpResponse = HttpResponse(
+                        code = response.status.value,
+                        timeStamp = response.requestTime.toHttpDate(),
+                        headers = mutableListOf<HttpHeader>().apply {
+                            response.headers.forEach { name, body ->
+                                add(
+                                    HttpHeader(
+                                        name = name,
+                                        value = body.joinToString { " " }
+                                    )
+                                )
+                            }
+                        },
+                        body = response.bodyAsText(),
+                        url = response.call.request.url.toString()
+                    )
+                )
             }
         }
     }
