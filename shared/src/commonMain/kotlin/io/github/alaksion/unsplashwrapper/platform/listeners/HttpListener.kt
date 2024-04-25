@@ -13,6 +13,7 @@ data class HttpResponse(
     val headers: List<HttpHeader>,
     val timeStamp: String,
     val url: String,
+    val method: String,
 )
 
 data class HttpHeader(
