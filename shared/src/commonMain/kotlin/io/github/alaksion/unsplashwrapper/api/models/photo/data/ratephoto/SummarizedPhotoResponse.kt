@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SummarizedPhotoResponse(
-    val blurHash: String,
+    val blurHash: String? = null,
     val color: String,
     val description: String,
     val height: Int,
@@ -24,7 +24,7 @@ internal data class SummarizedPhotoResponse(
 )
 
 internal fun SummarizedPhotoResponse.toDomain(): PhotoSummary = PhotoSummary(
-    blurHash = BlurhashDecoder.decode(this.blurHash),
+    blurHash = this.blurHash?.let { BlurhashDecoder.decode(it) },
     color = this.color,
     description = this.description,
     height = this.height,

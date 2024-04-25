@@ -22,6 +22,7 @@ import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.header
 import io.ktor.client.statement.bodyAsText
+import io.ktor.client.statement.request
 import io.ktor.http.toHttpDate
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.collections.immutable.persistentListOf
@@ -101,7 +102,8 @@ internal class UnsplashHttpClient private constructor(
                             }
                         },
                         body = response.bodyAsText(),
-                        url = response.call.request.url.toString()
+                        url = response.call.request.url.toString(),
+                        method = response.request.method.value
                     )
                 )
             }

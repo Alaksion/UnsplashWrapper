@@ -10,7 +10,6 @@ import io.github.alaksion.unsplashwrapper.api.models.photo.domain.PhotoTag
 import io.github.alaksion.unsplashwrapper.api.models.photo.domain.details.PhotoDetails
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.PhotoDetailsAuthorResponse
 import io.github.alaksion.unsplashwrapper.api.models.photoauthor.data.toDomain
-import io.github.alaksion.unsplashwrapper.api.models.user.data.toDomain
 import io.github.alaksion.unsplashwrapper.platform.blurhash.BlurhashDecoder
 import io.github.alaksion.unsplashwrapper.platform.color.UnsplashColor
 import io.github.alaksion.unsplashwrapper.platform.wrappers.InstantWrapper
@@ -32,7 +31,7 @@ internal data class PhotoDetailsResponse(
     val width: Int,
     val height: Int,
     val color: String,
-    @SerialName("blur_hash") val blurHash: String,
+    @SerialName("blur_hash") val blurHash: String? = null,
     val downloads: Int,
     val likes: Int,
     @SerialName("liked_by_user") val likedByUser: Boolean,
@@ -53,7 +52,7 @@ internal fun PhotoDetailsResponse.toDomain(): PhotoDetails = PhotoDetails(
     width = this.width,
     height = this.height,
     color = UnsplashColor(hex = this.color),
-    blurHash = BlurhashDecoder.decode(this.blurHash),
+    blurHash = this.blurHash?.let { BlurhashDecoder.decode(it) },
     downloads = this.downloads,
     likes = this.likes,
     likedByUser = this.likedByUser,

@@ -26,7 +26,7 @@ internal data class ListPhotosResponse(
     val width: Int,
     val height: Int,
     val color: String,
-    @SerialName("blur_hash") val blurHash: String,
+    @SerialName("blur_hash") val blurHash: String? = null,
     val likes: Int,
     @SerialName("liked_by_user")
     val likedByUser: Boolean,
@@ -44,7 +44,7 @@ internal fun ListPhotosResponse.toDomain(): ListPhoto {
         width = this.width,
         height = this.height,
         color = UnsplashColor(hex = this.color),
-        blurHash = BlurhashDecoder.decode(this.blurHash),
+        blurHash = this.blurHash?.let { BlurhashDecoder.decode(it) },
         likes = this.likes,
         likedByUser = this.likedByUser,
         description = this.description,
