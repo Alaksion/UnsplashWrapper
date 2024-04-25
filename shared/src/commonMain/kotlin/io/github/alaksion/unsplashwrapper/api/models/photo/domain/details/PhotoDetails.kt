@@ -19,7 +19,7 @@ data class PhotoDetails(
     val width: Int,
     val height: Int,
     val color: UnsplashColor,
-    val blurHash: Blurhash,
+    val blurHash: Blurhash?,
     val downloads: Int,
     val likes: Int,
     val likedByUser: Boolean,

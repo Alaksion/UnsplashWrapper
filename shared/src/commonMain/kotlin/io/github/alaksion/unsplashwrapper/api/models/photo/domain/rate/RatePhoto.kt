@@ -11,7 +11,7 @@ data class RatePhoto(
 )
 
 data class PhotoSummary(
-    val blurHash: Blurhash,
+    val blurHash: Blurhash?,
     val color: String,
     val description: String,
     val height: Int,
